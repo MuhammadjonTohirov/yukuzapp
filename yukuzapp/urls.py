@@ -13,9 +13,29 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
+from django.contrib.auth.models import User
 from django.contrib import admin
+from yukuz.resources import UserList
+from tastypie.api import Api
+from rest_framework.authtoken import views
+from yukuz.resources import VehicleTypeList, VehiclesList, PostOrderList, PickedOrderList, UserAuthResource, DriverList
+from rest_framework import routers, serializers, viewsets
+
+yukuz_app_api = Api(api_name='yukuz')
+yukuz_app_api.register(UserList())
+yukuz_app_api.register(VehicleTypeList())
+yukuz_app_api.register(PostOrderList())
+yukuz_app_api.register(PickedOrderList())
+yukuz_app_api.register(UserAuthResource())
+yukuz_app_api.register(DriverList())
+yukuz_app_api.register(VehiclesList())
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/', include(yukuz_app_api.urls)),
+    url(r'^rest/', include('yukuz.urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^docs/', include('rest_framework_docs.urls')),
+    url(r'^api-gettoken/$', views.obtain_auth_token)
 ]

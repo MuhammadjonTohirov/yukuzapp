@@ -7,7 +7,7 @@ from .models import PostOrder, PickedOrder
 
 # Register your models here.
 class PersonAdmin(admin.ModelAdmin):
-    list_display = ['ssn', 'first_name', 'last_name', 'email', 'joined_date']
+    list_display = ['user', 'ssn', 'joined_date']
 
 
 class VehicleTypeAdmin(admin.ModelAdmin):
