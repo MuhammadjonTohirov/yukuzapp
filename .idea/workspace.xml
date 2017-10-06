@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d42b7c0a-78b1-4f9b-b572-035f46a8fe8a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/yukuz/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/yukuz/migrations/0002_auto_20170924_2123.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/yukuz/migrations/0003_auto_20170924_2127.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/yukuz/migrations/0004_auto_20170926_0543.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/yukuz/migrations/0005_auto_20170926_0617.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/yukuz/migrations/0006_auto_20170926_0625.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/yukuz/migrations/0007_auto_20170926_0627.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/yukuz/migrations/0008_driverrate.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata.keystream" afterPath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata.keystream" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata.keystream.len" afterPath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata.keystream.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata.len" afterPath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata_i" afterPath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata_i" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata_i.len" afterPath="$PROJECT_DIR$/.idea/dataSources/e9055398-edb6-4ace-816e-804db437415e/_metadata_/metadata_i.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Requirements.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yukuz/urls.py" afterPath="$PROJECT_DIR$/yukuz/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yukuz/views.py" afterPath="$PROJECT_DIR$/yukuz/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yukuzapp/settings.py" afterPath="$PROJECT_DIR$/yukuzapp/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yukuzapp/urls.py" afterPath="$PROJECT_DIR$/yukuzapp/urls.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -90,7 +72,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yukuzapp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="327">
@@ -98,6 +80,16 @@
               <folding>
                 <element signature="e#642#683#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Requirements.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="316">
+              <caret line="37" column="14" lean-forward="true" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -187,6 +179,7 @@
       <find>oauth2_provider</find>
       <find>social</find>
       <find>allauth</find>
+      <find>flake</find>
     </findStrings>
     <dirStrings>
       <dir>M:\yukuzapp\</dir>
@@ -211,6 +204,7 @@
         <option value="$PROJECT_DIR$/yukuz/views.py" />
         <option value="$PROJECT_DIR$/yukuz/urls.py" />
         <option value="$PROJECT_DIR$/yukuzapp/urls.py" />
+        <option value="$PROJECT_DIR$/Requirements.txt" />
       </list>
     </option>
   </component>
@@ -268,22 +262,6 @@
           <expand>
             <path>
               <item name="yukuzapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yukuzapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yukuzapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yukuzapp" type="462c0819:PsiDirectoryNode" />
-              <item name="yukuz" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yukuzapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yukuzapp" type="462c0819:PsiDirectoryNode" />
-              <item name="yukuz" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yukuzapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yukuzapp" type="462c0819:PsiDirectoryNode" />
               <item name="yukuzapp" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -399,14 +377,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/yukuz/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yukuzapp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -821,6 +791,14 @@
           <folding>
             <element signature="e#642#683#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="37" column="14" lean-forward="true" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
