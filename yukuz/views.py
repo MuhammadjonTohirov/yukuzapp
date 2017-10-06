@@ -4,7 +4,9 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import generics, viewsets
+from rest_framework import generics, viewsets, status
+from rest_framework.response import Response
+
 from yukuz.api.permissions import IsStaffOrTargetUser, AllowAny
 from yukuz.serialisers import PersonSerializers, VehicleTypeSerializers, UserSerializers
 from yukuz.models import Person, VehicleType
@@ -19,9 +21,20 @@ class PersonList(generics.ListAPIView):
         serializer.save(owner=self.request.user)
 
 
-class VehicleTypeList(generics.ListAPIView):
+class VehicleTypeList(generics.ListAPIView, generics.CreateAPIView):
     queryset = VehicleType.objects.all()
     serializer_class = VehicleTypeSerializers
+    # def get(self, request, *args, **kwargs):
+    #     queryset = VehicleType.objects.all()
+    #     serializer_class = VehicleTypeSerializers(queryset, many=True)
+    #     return Response(serializer_class.data)
+    #
+    # def post(self, request, *args, **kwargs):
+    #     serializer_class = VehicleTypeSerializers(data=request.data)
+    #     if serializer_class.is_valid():
+    #         serializer_class.save()
+    #         return Response(serializer_class.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer_class.error_messages, status=status.HTTP_400_BAD_REQUEST)
 
 
 def create(usr):
@@ -36,7 +49,16 @@ def create(usr):
         return False
 
 
-class UserList(generics.ListAPIView, generics.ListCreateAPIView):
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializers
+    # def get_permissions(self):
+    #     # allow non-authenticated user to create via POST
+    #     return (AllowAny() if self.request.method == 'POST' or 'GET'
+    #             else IsStaffOrTargetUser),
+
+
+class RegisterView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializers
 
@@ -52,17 +74,7 @@ class UserList(generics.ListAPIView, generics.ListCreateAPIView):
 
     def get_permissions(self):
         # allow non-authenticated user to create via POST
-        return (AllowAny() if self.request.method == 'POST' or self.request.method == 'GET'
-                else IsStaffOrTargetUser),
-
-
-class UserView(viewsets.ModelViewSet):
-    serializer_class = UserSerializers
-    model = User
-
-    def get_permissions(self):
-        # allow non-authenticated user to create via POST
-        return (AllowAny() if self.request.method == 'POST' or self.request.method == 'GET'
+        return (AllowAny() if self.request.method == 'POST'
                 else IsStaffOrTargetUser()),
 
 

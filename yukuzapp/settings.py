@@ -44,7 +44,19 @@ INSTALLED_APPS = [
     'tastypie',
     'rest_framework_docs',
     'rest_auth',
-    'allauth',
+
+    # allauth app
+
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
+
+    # social auth with rest_framework django
+    'oauth2_provider',
+    'social_django',
+    'rest_framework_social_oauth2',
+
     'django_filters',
     'rest_auth.registration',
 
@@ -64,7 +76,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'yukuzapp.urls'
-SITE_ID = 2
+SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -138,8 +150,25 @@ STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
+    # django-rest-framework-social-oauth2
+    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+    # facebook OAuth2
+    'social_core.backends.facebook.FacebookAppOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    # DJango > it is very special for taking token from server
+    'django.contrib.auth.backends.ModelBackend',
+
 )
+
+# config facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '1321859597941315'
+SOCIAL_AUTH_FACEBOOK_SECRET = '87d81018e8d111bee2eac92f4f5f4294'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email'
+}
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
@@ -153,7 +182,15 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
+        # 'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        # 'rest_framework_social_oauth2.authentication.SocialAuthentication',
     )
 }
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'social_django.context_processors.backends',
+    'social_django.context_processors.login_redirect',
+)
+
 MEDIA_ROOT = 'templates/images'
 MEDIA_URL = '/media/'

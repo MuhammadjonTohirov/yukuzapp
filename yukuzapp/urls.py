@@ -37,5 +37,6 @@ urlpatterns = [
     url(r'^rest/', include('yukuz.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/', include('rest_framework_docs.urls')),
-    url(r'^api-gettoken/$', views.obtain_auth_token)
+    url(r'^api-gettoken/$', views.obtain_auth_token),
+    url(r'^auth/', include('rest_framework_social_oauth2.urls'))
 ]
