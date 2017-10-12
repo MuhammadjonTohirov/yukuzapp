@@ -49,6 +49,22 @@ def create(usr):
         return False
 
 
+@csrf_exempt
+def default_view(request):
+    if request.method == "GET":
+        try:
+            q = request.GET['q']
+            return HttpResponse(q)
+        except:
+            q = "no"
+        return HttpResponse(q)
+    if request.method == "POST":
+        # Person.objects.create()
+        q = request.POST.get('q', "nothing")
+        return HttpResponse(q)
+    return HttpResponse("...")
+
+
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializers

@@ -14,6 +14,10 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 
+class Image(models.Model):
+    image = models.ImageField(verbose_name='image')
+
+
 # Person class
 class Person(models.Model):
     # def get_short_name(self):
@@ -23,6 +27,7 @@ class Person(models.Model):
     #     return self.first_name + " " + self.last_name
     user = models.OneToOneField('auth.User', related_name='person', on_delete=models.CASCADE)
     ssn = models.IntegerField()
+    avatar = models.ImageField(verbose_name='human avatar', default='def_user.png')
     # first_name = models.CharField(max_length=50)
     # last_name = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=15)
@@ -60,6 +65,7 @@ class Car(models.Model):
 
 class Driver(models.Model):
     driver = models.OneToOneField(Person)
+    avatar = models.ImageField(verbose_name="driver avatar", default="def_user.png")
     car = models.ForeignKey(Car)
     reg_date = models.DateTimeField(auto_now_add=True)
 

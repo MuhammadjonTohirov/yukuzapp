@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     # 3rd party apps
     'rest_framework',
     'rest_framework.authtoken',
@@ -47,8 +46,8 @@ INSTALLED_APPS = [
 
     # allauth app
 
-    # 'allauth',
-    # 'allauth.account',
+    'allauth',
+    'allauth.account',
     # 'allauth.socialaccount',
     # 'allauth.socialaccount.providers.facebook',
 
@@ -59,6 +58,9 @@ INSTALLED_APPS = [
 
     'django_filters',
     'rest_auth.registration',
+
+    # firebase app
+    'fcm',
 
     # my apps
     'yukuz.apps.YukuzConfig',
@@ -80,9 +82,9 @@ SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
+
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -146,7 +148,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
@@ -158,7 +159,7 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
     # DJango > it is very special for taking token from server
     'django.contrib.auth.backends.ModelBackend',
-
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 # config facebook
@@ -169,6 +170,12 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email'
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
@@ -192,5 +199,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'social_django.context_processors.login_redirect',
 )
 
+STATIC_URL = '/static/'
 MEDIA_ROOT = 'templates/images'
-MEDIA_URL = '/media/'
+MEDIA_URL = '/images/'
