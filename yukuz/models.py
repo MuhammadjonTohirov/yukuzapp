@@ -27,7 +27,7 @@ class Person(models.Model):
     #     return self.first_name + " " + self.last_name
     user = models.OneToOneField('auth.User', related_name='person', on_delete=models.CASCADE)
     ssn = models.IntegerField()
-    avatar = models.ImageField(verbose_name='human avatar', default='def_user.png')
+    avatar = models.ImageField(verbose_name='human avatar', default='images/def_user.png', upload_to='images/')
     # first_name = models.CharField(max_length=50)
     # last_name = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=15)
@@ -47,6 +47,26 @@ class VehicleType(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class DeviceType(models.Model):
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
+class Device(models.Model):
+    user_id = models.OneToOneField(User)
+    device = models.CharField(max_length=512)
+    type = models.OneToOneField(DeviceType)
+    dev_version = models.CharField(max_length=50)
+    is_driver = models.BooleanField(default=False)
+    added = models.DateTimeField(auto_created=True, auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user_id.id)
 
 
 class Car(models.Model):

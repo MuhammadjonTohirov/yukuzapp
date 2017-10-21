@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User, AbstractBaseUser
 from rest_framework import serializers
 from yukuz.models import Person, VehicleType, Car, Driver, PostOrder
-from django.contrib.auth.hashers import make_password
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -34,9 +33,11 @@ class UserSerializers(serializers.ModelSerializer):
 
 
 class PersonSerializers(serializers.ModelSerializer):
+    avatar = serializers.ImageField(max_length=None, use_url=None)
+
     class Meta:
         model = Person
-        # fields = ['', 'username', 'password', 'email']
+        fields = ['id', 'ssn', 'user', 'phone_number', 'avatar']
 
 
 class VehicleTypeSerializers(serializers.ModelSerializer):

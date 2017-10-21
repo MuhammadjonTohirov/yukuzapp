@@ -13,7 +13,7 @@ from yukuz.models import Person, VehicleType
 
 
 # Create your views here.
-class PersonList(generics.ListAPIView):
+class PersonList(generics.ListAPIView, generics.ListCreateAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializers
 
@@ -24,17 +24,6 @@ class PersonList(generics.ListAPIView):
 class VehicleTypeList(generics.ListAPIView, generics.CreateAPIView):
     queryset = VehicleType.objects.all()
     serializer_class = VehicleTypeSerializers
-    # def get(self, request, *args, **kwargs):
-    #     queryset = VehicleType.objects.all()
-    #     serializer_class = VehicleTypeSerializers(queryset, many=True)
-    #     return Response(serializer_class.data)
-    #
-    # def post(self, request, *args, **kwargs):
-    #     serializer_class = VehicleTypeSerializers(data=request.data)
-    #     if serializer_class.is_valid():
-    #         serializer_class.save()
-    #         return Response(serializer_class.data, status=status.HTTP_201_CREATED)
-    #     return Response(serializer_class.error_messages, status=status.HTTP_400_BAD_REQUEST)
 
 
 def create(usr):

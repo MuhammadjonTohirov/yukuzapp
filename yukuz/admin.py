@@ -1,11 +1,16 @@
 from django.contrib import admin
-from .models import Person
-from .models import Driver
+from .models import Person, DeviceType
+from .models import Driver, Device
 from .models import VehicleType, Car
 from .models import PostOrder, PickedOrder
 
 
 # Register your models here.
+class DeviceAdmin(admin.ModelAdmin):
+    list_display = ['device', 'dev_version']
+    list_filter = ['is_driver', 'type']
+
+
 class PersonAdmin(admin.ModelAdmin):
     list_display = ['user', 'ssn', 'joined_date']
 
@@ -30,6 +35,8 @@ class PickedOrderAdmin(admin.ModelAdmin):
     list_display = ['order', 'picked_by', 'picked_time']
 
 
+admin.site.register(DeviceType)
+admin.site.register(Device, DeviceAdmin)
 admin.site.register(Person, PersonAdmin)
 admin.site.register(VehicleType, VehicleTypeAdmin)
 admin.site.register(Car, CarAdmin)

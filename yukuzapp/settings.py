@@ -66,6 +66,8 @@ INSTALLED_APPS = [
     'yukuz.apps.YukuzConfig',
 
 ]
+# firebase config
+FCM_APIKEY = "AIzaSyDZ5VnFid2Zv5hCKRCVHR7btlJ4A4Gebrk"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -95,6 +97,9 @@ TEMPLATES = [
         },
     },
 ]
+REST_FRAMEWORK_DOCS = {
+    'HIDE_DOCS': False # Default: False
+}
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
@@ -200,5 +205,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = 'templates/images'
+MEDIA_ROOT = 'templates/'
 MEDIA_URL = '/images/'
