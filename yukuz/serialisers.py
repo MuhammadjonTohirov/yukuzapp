@@ -1,6 +1,13 @@
-from django.contrib.auth.models import User, AbstractBaseUser
+from django.contrib.auth.models import User
 from rest_framework import serializers
-from yukuz.models import Person, VehicleType, Car, Driver, PostOrder
+
+from yukuz.models import Person, VehicleType, Car, Driver, PostOrder, MobDevice, PickedOrder
+
+
+class DevSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MobDevice
+        fields = ('device', 'user_id', 'is_driver', 'dev_version', 'type')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,13 +26,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserSerializers(serializers.ModelSerializer):
-    # person = serializers.PrimaryKeyRelatedField(many=False, queryset=Person.objects.all())
-
-    # owner = serializers.ReadOnlyField(source='owner.username')
-
     class Meta:
         model = User
-        fields = ('id', 'username', 'email')
+        fields = ('id', 'username', 'email', 'first_name', 'last_name')
+
         # create(fields)
         # extra_kwargs = {'password': {'write_only': True}}
         # create(model)
@@ -33,11 +37,10 @@ class UserSerializers(serializers.ModelSerializer):
 
 
 class PersonSerializers(serializers.ModelSerializer):
-    avatar = serializers.ImageField(max_length=None, use_url=None)
-
     class Meta:
         model = Person
-        fields = ['id', 'ssn', 'user', 'phone_number', 'avatar']
+        fields = ['ssn', 'phone_number', 'image', 'user']
+        # exclude = ['user']
 
 
 class VehicleTypeSerializers(serializers.ModelSerializer):
@@ -61,5 +64,18 @@ class DriverSerializers(serializers.ModelSerializer):
 class PostOrderSerializers(serializers.ModelSerializer):
     class Meta:
         model = PostOrder
-        fields = ['title', 'description', 'weigth', 'source_address', 'destination_address', 'is_picked', 'order_by',
+        fields = ['title', 'description', 'weigth', 'source_address', 'destination_address', 'is_picked',
+                  'order_by',
                   'order_time']
+
+
+class PickedOrderSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = PickedOrder
+        fields = ['order', 'picked_by', 'picked_time']
+
+
+# class UploadAvatarSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = UserAvatar
+#         fields = ['owner', 'image']

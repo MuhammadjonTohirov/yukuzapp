@@ -24,10 +24,9 @@ SECRET_KEY = 'xl2xbrrn#iml)_deyc$_=7_ivqn)^1*)qwz$o(z%l&_gcf=txe'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["192.168.43.11", 'localhost']
+# , "localhost", "165.246.221.185"
 # Application definition
-
 INSTALLED_APPS = [
 
     'django.contrib.sites',
@@ -37,10 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cleanup',
     # 3rd party apps
     'rest_framework',
     'rest_framework.authtoken',
-    'tastypie',
     'rest_framework_docs',
     'rest_auth',
 
@@ -60,7 +59,6 @@ INSTALLED_APPS = [
     'rest_auth.registration',
 
     # firebase app
-    'fcm',
 
     # my apps
     'yukuz.apps.YukuzConfig',
@@ -97,9 +95,7 @@ TEMPLATES = [
         },
     },
 ]
-REST_FRAMEWORK_DOCS = {
-    'HIDE_DOCS': False # Default: False
-}
+
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',

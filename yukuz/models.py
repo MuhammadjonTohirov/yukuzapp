@@ -1,3 +1,4 @@
+import os
 from django.db import models
 from django.contrib.auth.models import User, AbstractBaseUser
 from rest_framework.authtoken.models import Token
@@ -14,31 +15,31 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 
-class Image(models.Model):
-    image = models.ImageField(verbose_name='image')
+# class UserAvatar(models.Model):
+#     owner = models.OneToOneField('Person', primary_key=True, related_name='ava')
+#     image = models.ImageField(verbose_name='image/def_user', default='def_user')
+#
+#     def __str__(self):
+#         return str(self.owner_id) + " " + str(self.image)
 
 
 # Person class
 class Person(models.Model):
-    # def get_short_name(self):
-    #     return self.first_name
-    #
-    # def get_full_name(self):
-    #     return self.first_name + " " + self.last_name
-    user = models.OneToOneField('auth.User', related_name='person', on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='person', on_delete=models.CASCADE,
+                                primary_key=True)
     ssn = models.IntegerField()
-    avatar = models.ImageField(verbose_name='human avatar', default='images/def_user.png', upload_to='images/')
-    # first_name = models.CharField(max_length=50)
-    # last_name = models.CharField(max_length=50)
+    image = models.ImageField(verbose_name='image/def_user', default='def_user')
     phone_number = models.CharField(max_length=15)
-    # email = models.EmailField()
     joined_date = models.DateTimeField(auto_now_add=True)
-
-    # USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = ['email']
 
     def __str__(self):
         return str(self.ssn) + " " + self.user.first_name + " " + self.user.last_name
+
+    def delete(self, using=None, keep_parents=False):
+        # self.ava.delete()
+        # if self.driver is not None:
+        #     self.driver.delete()
+        super(Person, self).delete(using=None, keep_parents=False)
 
 
 class VehicleType(models.Model):
@@ -57,10 +58,10 @@ class DeviceType(models.Model):
         return self.title
 
 
-class Device(models.Model):
-    user_id = models.OneToOneField(User)
+class MobDevice(models.Model):
+    user_id = models.OneToOneField(User, null=False)
     device = models.CharField(max_length=512)
-    type = models.OneToOneField(DeviceType)
+    type = models.ForeignKey(DeviceType)
     dev_version = models.CharField(max_length=50)
     is_driver = models.BooleanField(default=False)
     added = models.DateTimeField(auto_created=True, auto_now_add=True)
@@ -84,13 +85,21 @@ class Car(models.Model):
 
 
 class Driver(models.Model):
-    driver = models.OneToOneField(Person)
-    avatar = models.ImageField(verbose_name="driver avatar", default="def_user.png")
+    driver = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True, related_name='driver')
     car = models.ForeignKey(Car)
+    driver_license = models.ImageField(upload_to='licenses/', default='')
     reg_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.driver.user.first_name
+
+
+class PriceClass(models.Model):
+    title = models.CharField(max_length=50)
+    sign = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.title
 
 
 class PostOrder(models.Model):
@@ -100,7 +109,11 @@ class PostOrder(models.Model):
     source_address = models.CharField(max_length=300)
     destination_address = models.CharField(max_length=300)
     is_picked = models.BooleanField(default=False)
-    # image = models.FileField()
+    deadline = models.DateTimeField(auto_now=True)
+    currency_type = models.ForeignKey(PriceClass, default=0)
+    estimated_price = models.FloatField(default=0)
+    image = models.FileField(default="/images/def_user.png", upload_to='images')
+    is_cancelled = models.BooleanField(default=False)
     order_by = models.ForeignKey(Person, verbose_name="order by a person")
     order_time = models.DateTimeField(auto_now_add=True)
 
@@ -125,3 +138,11 @@ class DriverRate(models.Model):
 
     def __str__(self):
         return str(self.star) + " " + self.description
+
+
+class OrderImages(models.Model):
+    order = models.ForeignKey(PostOrder)
+    image = models.ImageField(default='images/def_user.png', upload_to='images')
+
+    def __str__(self):
+        return str(self.pk) + " - " + str(self.order)

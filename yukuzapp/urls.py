@@ -16,33 +16,18 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from patterns import patterns
 
-from yukuz.resources import UserList
-from tastypie.api import Api
 from rest_framework.authtoken import views
-from yukuz.resources import VehicleTypeList, VehiclesList, PostOrderList, PickedOrderList, UserAuthResource, DriverList
-from rest_framework import routers, serializers, viewsets
 
 from yukuzapp import settings
 
-yukuz_app_api = Api(api_name='yukuz')
-yukuz_app_api.register(UserList())
-yukuz_app_api.register(VehicleTypeList())
-yukuz_app_api.register(PostOrderList())
-yukuz_app_api.register(PickedOrderList())
-yukuz_app_api.register(UserAuthResource())
-yukuz_app_api.register(DriverList())
-yukuz_app_api.register(VehiclesList())
 
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),
-                  url(r'^api/', include(yukuz_app_api.urls)),
                   url(r'^rest/', include('yukuz.urls')),
                   url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
                   url(r'^docs/', include('rest_framework_docs.urls')),
                   url(r'^api-gettoken/$', views.obtain_auth_token),
                   url(r'^auth/', include('rest_framework_social_oauth2.urls')),
-                  url(r'fcm/', include('fcm.urls')),
                   # url(r'^fcm/', include('fcm.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
