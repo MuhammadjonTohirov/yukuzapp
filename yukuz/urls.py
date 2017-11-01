@@ -16,5 +16,6 @@ urlpatterns = [
     url(r'^users/(?P<pk>[0-9]+)/$', views.UserDetail.as_view()),
     url(r'^def/$', views.read_token),
 
+    url(r'^get_price_class/$', view=views.getPriceClass),
     # url(r'^upload/$', views.UploadAvatar.as_view())
 ]

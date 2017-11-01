@@ -1,4 +1,3 @@
-import os
 from django.db import models
 from django.contrib.auth.models import User, AbstractBaseUser
 from rest_framework.authtoken.models import Token
@@ -12,7 +11,7 @@ from django.conf import settings
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
-        Token.objects.creat
+        Token.objects.create(user=instance)
 
 
 # class UserAvatar(models.Model):
@@ -103,7 +102,7 @@ class PriceClass(models.Model):
 
 
 class PostOrder(models.Model):
-    title = models.CharField(max_length=200)
+    post_title = models.CharField(max_length=200)
     description = models.CharField(max_length=3000)
     weigth = models.FloatField(null=False)
     source_address = models.CharField(max_length=300)
@@ -112,7 +111,7 @@ class PostOrder(models.Model):
     deadline = models.DateTimeField(auto_now=True)
     currency_type = models.ForeignKey(PriceClass, default=0)
     estimated_price = models.FloatField(default=0)
-    # image = models.FileField(default="/images/def_user.png", upload_to='images')
+    type_of_vehicle = models.ForeignKey('VehicleType')
     is_cancelled = models.BooleanField(default=False)
     order_by = models.ForeignKey(Person, verbose_name="order by a person")
     order_time = models.DateTimeField(auto_now_add=True)
@@ -122,7 +121,7 @@ class PostOrder(models.Model):
         super(PostOrder, self).delete(using=None, keep_parents=False)
 
     def __str__(self):
-        return str(self.order_by.ssn) + self.title
+        return str(self.order_by.ssn) + self.post_title
 
 
 class OrderImages(models.Model):

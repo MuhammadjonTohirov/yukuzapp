@@ -3,18 +3,17 @@ import json
 from django.contrib.auth.models import User
 from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework import generics, viewsets, status
-from rest_framework.authentication import TokenAuthentication, SessionAuthentication, BasicAuthentication
-from rest_framework.authtoken.models import Token
-from rest_framework.decorators import permission_classes, api_view, authentication_classes
+from rest_framework import generics, status
+from rest_framework.decorators import permission_classes, api_view
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 
 from yukuz.api.permissions import IsStaffOrTargetUser, AllowAny
 from yukuz.serialisers import PersonSerializers, VehicleTypeSerializers, UserSerializers, DevSerializer, \
     PostOrderSerializers, PickedOrderSerializers
-from yukuz.models import Person, VehicleType, MobDevice, PostOrder, PickedOrder
+from yukuz.models import Person, VehicleType, MobDevice, PostOrder, PickedOrder, PriceClass
 
 
 # Create your views here.
@@ -118,11 +117,32 @@ def default_view(request):
     return HttpResponse("...")
 
 
-class PostsList(generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView):
-    queryset = PostOrder.objects.all()
-    serializer_class = PostOrderSerializers
+class PostsList(generics.ListAPIView):
+    # queryset = PostOrder.objects.all()
+    # serializer_class = PostOrderSerializers
 
-    # def perform_update(self, serializer):
+    def get(self, request, *args, **kwargs):
+        try:
+            type = request.GET['id']
+            if type is "1":
+                queryset = PostOrder.objects.filter(order_by__user=request.user, is_picked=False).all()
+                serializer_class = PostOrderSerializers(queryset, many=True)
+
+                for x in serializer_class.data:
+                    t = x['currency_type']
+                    currency = PriceClass.objects.get(id=t)
+                    x.update({'currency': currency.title})
+
+                print(serializer_class.data[0]['order_by'])
+                json_data = JSONRenderer().render(serializer_class.data)
+
+                return HttpResponse(json_data)
+            elif type is "2":
+                return HttpResponse("OK")
+            else:
+                return Response(status.HTTP_204_NO_CONTENT)
+        except:
+            return Response(status.HTTP_204_NO_CONTENT)
 
 
 class UserList(generics.ListAPIView):
@@ -164,6 +184,7 @@ class PickedOrderList(generics.ListAPIView):
     queryset = PickedOrder.objects.all()
     serializer_class = PickedOrderSerializers
 
+
 # class UploadAvatar(generics.CreateAPIView):
 #     queryset = UserAvatar.objects.all()
 #     serializer_class = UploadAvatarSerializer
@@ -181,3 +202,9 @@ class PickedOrderList(generics.ListAPIView):
 #             serializer.save(owner=prk, image=avatar)
 #         else:
 #             serializer.save(owner=prk)
+def getPriceClass(request):
+    from django.core import serializers
+    queryset = PriceClass.objects.all()
+    ser = serializers.serialize("json", queryset)
+    # jsondata = JSONRenderer().render(data=ser)
+    return HttpResponse(ser)
