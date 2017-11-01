@@ -64,16 +64,15 @@ class DriverSerializers(serializers.ModelSerializer):
 class PostOrderSerializers(serializers.ModelSerializer):
     class Meta:
         model = PostOrder
-        fields = ['title', 'description', 'weigth', 'source_address', 'destination_address', 'is_picked',
+        fields = ['title', 'description', 'weigth', 'source_address', 'destination_address',
                   'order_by',
-                  'order_time']
+                  'order_time', 'image', 'deadline', 'currency_type', 'estimated_price']
 
 
 class PickedOrderSerializers(serializers.ModelSerializer):
     class Meta:
         model = PickedOrder
         fields = ['order', 'picked_by', 'picked_time']
-
 
 # class UploadAvatarSerializer(serializers.ModelSerializer):
 #     class Meta:

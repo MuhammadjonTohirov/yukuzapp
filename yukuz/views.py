@@ -25,6 +25,7 @@ class PersonList(generics.ListAPIView, generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         avatar = self.request.data.get('image')
+        avatar = self.request.data.get('image')
         # avatar = avatar.thumbnail(avatar.width / 2, avatar.height / 2, avatar.ANTIALIAS)
         # Person.objects.get_or_create(ssn=self.request.data['ssn'], phone_number=self.request.data['phone_number'],
         #                              user=self.request.user, image=avatar)

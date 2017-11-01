@@ -12,7 +12,7 @@ from django.conf import settings
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
-        Token.objects.create(user=instance)
+        Token.objects.creat
 
 
 # class UserAvatar(models.Model):
@@ -112,13 +112,25 @@ class PostOrder(models.Model):
     deadline = models.DateTimeField(auto_now=True)
     currency_type = models.ForeignKey(PriceClass, default=0)
     estimated_price = models.FloatField(default=0)
-    image = models.FileField(default="/images/def_user.png", upload_to='images')
+    # image = models.FileField(default="/images/def_user.png", upload_to='images')
     is_cancelled = models.BooleanField(default=False)
     order_by = models.ForeignKey(Person, verbose_name="order by a person")
     order_time = models.DateTimeField(auto_now_add=True)
 
+    def delete(self, using=None, keep_parents=False):
+        self.order_image.delete()
+        super(PostOrder, self).delete(using=None, keep_parents=False)
+
     def __str__(self):
         return str(self.order_by.ssn) + self.title
+
+
+class OrderImages(models.Model):
+    order = models.ForeignKey(PostOrder, related_name='order_image')
+    image = models.ImageField(upload_to="images/", default="def_user.png")
+
+    def __str__(self):
+        return "image" + self.order.__str__()
 
 
 class PickedOrder(models.Model):
@@ -139,10 +151,10 @@ class DriverRate(models.Model):
     def __str__(self):
         return str(self.star) + " " + self.description
 
-
-class OrderImages(models.Model):
-    order = models.ForeignKey(PostOrder)
-    image = models.ImageField(default='images/def_user.png', upload_to='images')
-
-    def __str__(self):
-        return str(self.pk) + " - " + str(self.order)
+#
+# class OrderImages(models.Model):
+#     order = models.ForeignKey(PostOrder)
+#     image = models.ImageField(default='images/def_user.png', upload_to='images')
+#
+#     def __str__(self):
+#         return str(self.pk) + " - " + str(self.order)

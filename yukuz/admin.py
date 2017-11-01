@@ -35,7 +35,6 @@ class PickedOrderAdmin(admin.ModelAdmin):
     list_display = ['order', 'picked_by', 'picked_time']
 
 
-
 admin.site.register(PriceClass)
 admin.site.register(OrderImages)
 # admin.site.register(UserAvatar)
