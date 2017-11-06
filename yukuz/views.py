@@ -51,6 +51,7 @@ def get_id(request):
 class VehicleTypeList(generics.ListAPIView, generics.CreateAPIView):
     queryset = VehicleType.objects.all()
     serializer_class = VehicleTypeSerializers
+    permission_classes = ((AllowAny,))
 
 
 class CreateDevice(generics.ListAPIView, generics.CreateAPIView):
@@ -117,10 +118,7 @@ def default_view(request):
     return HttpResponse("...")
 
 
-class PostsList(generics.ListAPIView):
-    # queryset = PostOrder.objects.all()
-    # serializer_class = PostOrderSerializers
-
+class PostsList(generics.ListAPIView, generics.CreateAPIView):
     def get(self, request, *args, **kwargs):
         try:
             type = request.GET['id']
@@ -133,7 +131,6 @@ class PostsList(generics.ListAPIView):
                     currency = PriceClass.objects.get(id=t)
                     x.update({'currency': currency.title})
 
-                print(serializer_class.data[0]['order_by'])
                 json_data = JSONRenderer().render(serializer_class.data)
 
                 return HttpResponse(json_data)
@@ -143,6 +140,13 @@ class PostsList(generics.ListAPIView):
                 return Response(status.HTTP_204_NO_CONTENT)
         except:
             return Response(status.HTTP_204_NO_CONTENT)
+
+    def post(self, request, *args, **kwargs):
+        serializer_class = PostOrderSerializers(data=request.data)
+        if serializer_class.is_valid(raise_exception=True):
+            PostOrder.objects.create(order_by=Person.objects.get(user=request.user), **serializer_class.validated_data)
+            return Response("{\"status\":\"created\"}")
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class UserList(generics.ListAPIView):

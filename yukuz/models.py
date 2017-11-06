@@ -108,16 +108,16 @@ class PostOrder(models.Model):
     source_address = models.CharField(max_length=300)
     destination_address = models.CharField(max_length=300)
     is_picked = models.BooleanField(default=False)
-    deadline = models.DateTimeField(auto_now=True)
-    currency_type = models.ForeignKey(PriceClass, default=0)
-    estimated_price = models.FloatField(default=0)
-    type_of_vehicle = models.ForeignKey('VehicleType')
+    deadline = models.DateField(null=False,)
+    currency_type = models.ForeignKey(PriceClass, null=False)
+    estimated_price = models.FloatField(default=0, null=False)
+    type_of_vehicle = models.ForeignKey('VehicleType', null=False)
     is_cancelled = models.BooleanField(default=False)
     order_by = models.ForeignKey(Person, verbose_name="order by a person")
     order_time = models.DateTimeField(auto_now_add=True)
 
     def delete(self, using=None, keep_parents=False):
-        self.order_image.delete()
+        # self.order_image.delete()
         super(PostOrder, self).delete(using=None, keep_parents=False)
 
     def __str__(self):

@@ -64,9 +64,10 @@ class DriverSerializers(serializers.ModelSerializer):
 class PostOrderSerializers(serializers.ModelSerializer):
     class Meta:
         model = PostOrder
-        fields = ('id', 'post_title', 'description', 'weigth', 'source_address', 'destination_address',
-                  'order_by',
-                  'order_time', 'deadline', 'currency_type', 'estimated_price')
+        fields = ('id', 'post_title', 'description', 'weigth', 'source_address',
+                  'destination_address',
+                  'order_time', 'deadline', 'currency_type', 'estimated_price',
+                  'type_of_vehicle')
         # exclude = []
 
 
