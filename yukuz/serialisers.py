@@ -67,7 +67,7 @@ class PostOrderSerializers(serializers.ModelSerializer):
         fields = ('id', 'post_title', 'description', 'weigth', 'source_address',
                   'destination_address',
                   'order_time', 'deadline', 'currency_type', 'estimated_price',
-                  'type_of_vehicle')
+                  'type_of_vehicle', 'is_cancelled')
         # exclude = []
 
 

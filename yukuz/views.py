@@ -118,6 +118,29 @@ def default_view(request):
     return HttpResponse("...")
 
 
+@permission_classes((IsAuthenticated,))
+@csrf_exempt
+def update_post(request):
+    if request.method == 'POST':
+        try:
+            id = request.POST['id']
+            cancel = request.POST['cancel']
+            price = request.POST['price']
+            deadline = request.POST['deadline']
+            descr = request.POST['description']
+            order = PostOrder.objects.get(id=id)
+            order.is_cancelled = bool(cancel)
+            order.estimated_price = price
+            order.deadline = deadline
+            order.description = descr
+            order.save()
+            return HttpResponse("updated")
+        except:
+            return HttpResponse(status=status.HTTP_304_NOT_MODIFIED)
+    else:
+        return HttpResponse("Send POST request")
+
+
 class PostsList(generics.ListAPIView, generics.CreateAPIView):
     def get(self, request, *args, **kwargs):
         try:

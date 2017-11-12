@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^vtypelist/$', views.VehicleTypeList.as_view()),
     url(r'^get_user/$', views.get_id),
 
+    url(r'^post_update/$', views.update_post),
     url(r'^posts/$', views.PostsList.as_view()),
     url(r'^picked_orders/$', views.PickedOrderList.as_view()),
     url(r'^devices/$', views.CreateDevice.as_view()),
