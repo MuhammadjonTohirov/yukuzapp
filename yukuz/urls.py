@@ -7,6 +7,8 @@ urlpatterns = [
     url(r'^persondetails/(?P<pk>\d+)/?', views.PersonDetails.as_view()),
     url(r'^vtypelist/$', views.VehicleTypeList.as_view()),
     url(r'^get_user/$', views.get_id),
+    url(r'^driver_create/$', views.DriverView.as_view()),
+    url(r'^car_view/$', views.CarView.as_view()),
 
     url(r'^post_update/$', views.update_post),
     url(r'^posts/$', views.PostsList.as_view()),

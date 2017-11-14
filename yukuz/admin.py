@@ -20,7 +20,7 @@ class VehicleTypeAdmin(admin.ModelAdmin):
 
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ['car_type', 'min_kg', 'max_kg']
+    list_display = ['car_type', 'min_kg', 'max_kg', 'by_person']
 
 
 class DriverAdmin(admin.ModelAdmin):

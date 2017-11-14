@@ -52,13 +52,13 @@ class VehicleTypeSerializers(serializers.ModelSerializer):
 class CarSerializers(serializers.ModelSerializer):
     class Meta:
         model = Car
-        fields = ['id', 'car_type', 'description']
+        fields = ['title', 'car_type', 'number', 'min_kg', 'max_kg']
 
 
 class DriverSerializers(serializers.ModelSerializer):
     class Meta:
         model = Driver
-        fields = ['id', 'driver', 'car']
+        fields = ['driver', 'car', 'driver_license']
 
 
 class PostOrderSerializers(serializers.ModelSerializer):

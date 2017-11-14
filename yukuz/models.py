@@ -71,9 +71,11 @@ class MobDevice(models.Model):
 
 class Car(models.Model):
     car_type = models.OneToOneField(VehicleType)
-    number = models.CharField(max_length=15)
+    title = models.CharField(max_length=50)
+    number = models.CharField(max_length=15, primary_key=True)
     min_kg = models.PositiveIntegerField(default=1)
     max_kg = models.PositiveIntegerField(default=5)
+    by_person = models.ForeignKey('Person')
 
     def description(self):
         return "The car (" + str(self.number) + ") can deliver baggage from " + str(self.min_kg) + " to " + str(
@@ -86,7 +88,7 @@ class Car(models.Model):
 class Driver(models.Model):
     driver = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True, related_name='driver')
     car = models.ForeignKey(Car)
-    driver_license = models.ImageField(upload_to='licenses/', default='')
+    driver_license = models.ImageField(upload_to='licenses/', null=False)
     reg_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -108,7 +110,7 @@ class PostOrder(models.Model):
     source_address = models.CharField(max_length=300)
     destination_address = models.CharField(max_length=300)
     is_picked = models.BooleanField(default=False)
-    deadline = models.DateField(null=False,)
+    deadline = models.DateField(null=False, )
     currency_type = models.ForeignKey(PriceClass, null=False)
     estimated_price = models.FloatField(default=0, null=False)
     type_of_vehicle = models.ForeignKey('VehicleType', null=False)

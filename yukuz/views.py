@@ -12,8 +12,8 @@ from rest_framework.response import Response
 
 from yukuz.api.permissions import IsStaffOrTargetUser, AllowAny
 from yukuz.serialisers import PersonSerializers, VehicleTypeSerializers, UserSerializers, DevSerializer, \
-    PostOrderSerializers, PickedOrderSerializers
-from yukuz.models import Person, VehicleType, MobDevice, PostOrder, PickedOrder, PriceClass
+    PostOrderSerializers, PickedOrderSerializers, DriverSerializers, CarSerializers
+from yukuz.models import Person, VehicleType, MobDevice, PostOrder, PickedOrder, PriceClass, Driver, Car
 
 
 # Create your views here.
@@ -23,7 +23,6 @@ class PersonList(generics.ListAPIView, generics.ListCreateAPIView):
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def perform_create(self, serializer):
-        avatar = self.request.data.get('image')
         avatar = self.request.data.get('image')
         # avatar = avatar.thumbnail(avatar.width / 2, avatar.height / 2, avatar.ANTIALIAS)
         # Person.objects.get_or_create(ssn=self.request.data['ssn'], phone_number=self.request.data['phone_number'],
@@ -177,9 +176,31 @@ class UserList(generics.ListAPIView):
     serializer_class = UserSerializers
 
 
+class CarView(generics.ListAPIView, generics.CreateAPIView):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializers
+
+    def post(self, request, *args, **kwargs):
+        serializer_class = CarSerializers(data=request.data)
+        if serializer_class.is_valid(raise_exception=True):
+            Car.objects.create(by_person=Person.objects.get(user=request.user), **serializer_class.validated_data)
+            return Response(status=status.HTTP_200_OK, data="OK")
+        return Response(status=status.HTTP_200_OK, data="NO")
+
+
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializers
+
+
+class DriverView(generics.CreateAPIView):
+    queryset = Driver.objects.all()
+    serializer_class = DriverSerializers
+    parser_classes = (MultiPartParser, FormParser, JSONParser)
+
+    def perform_create(self, serializer):
+        driver_license_img = self.request.data.get('image')
+        serializer.save(driver=self.request.user, car=self.request.data['car'], driver_license=driver_license_img)
 
 
 class RegisterView(generics.CreateAPIView, generics.UpdateAPIView):
