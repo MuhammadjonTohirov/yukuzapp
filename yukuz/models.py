@@ -8,6 +8,9 @@ from django.conf import settings
 
 # Create your models here.
 # will create once user register or sign up.
+from yukuz_auth.models import Person, Driver
+
+
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
@@ -23,22 +26,6 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 
 # Person class
-class Person(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='person', on_delete=models.CASCADE,
-                                primary_key=True)
-    ssn = models.IntegerField()
-    image = models.ImageField(verbose_name='image/def_user', default='def_user')
-    phone_number = models.CharField(max_length=15)
-    joined_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return str(self.ssn) + " " + self.user.first_name + " " + self.user.last_name
-
-    def delete(self, using=None, keep_parents=False):
-        # self.ava.delete()
-        # if self.driver is not None:
-        #     self.driver.delete()
-        super(Person, self).delete(using=None, keep_parents=False)
 
 
 class VehicleType(models.Model):
@@ -49,33 +36,13 @@ class VehicleType(models.Model):
         return self.title
 
 
-class DeviceType(models.Model):
-    title = models.CharField(max_length=20)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.title
-
-
-class MobDevice(models.Model):
-    user_id = models.OneToOneField(User, null=False)
-    device = models.CharField(max_length=512)
-    type = models.ForeignKey(DeviceType)
-    dev_version = models.CharField(max_length=50)
-    is_driver = models.BooleanField(default=False)
-    added = models.DateTimeField(auto_created=True, auto_now_add=True)
-
-    def __str__(self):
-        return str(self.user_id.id)
-
-
 class Car(models.Model):
     car_type = models.OneToOneField(VehicleType)
     title = models.CharField(max_length=50)
     number = models.CharField(max_length=15, primary_key=True)
     min_kg = models.PositiveIntegerField(default=1)
     max_kg = models.PositiveIntegerField(default=5)
-    by_person = models.ForeignKey('Person')
+    by_person = models.ForeignKey('yukuz_auth.Person')
 
     def description(self):
         return "The car (" + str(self.number) + ") can deliver baggage from " + str(self.min_kg) + " to " + str(
@@ -85,14 +52,6 @@ class Car(models.Model):
         return self.car_type.title + " " + str(self.number)
 
 
-class Driver(models.Model):
-    driver = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True, related_name='driver')
-    car = models.ForeignKey(Car)
-    driver_license = models.ImageField(upload_to='licenses/', null=False)
-    reg_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.driver.user.first_name
 
 
 class PriceClass(models.Model):
@@ -136,7 +95,7 @@ class OrderImages(models.Model):
 
 class PickedOrder(models.Model):
     order = models.OneToOneField(PostOrder)
-    picked_by = models.ForeignKey(Driver, parent_link=True)
+    picked_by = models.ForeignKey('yukuz_auth.Driver', )
     picked_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

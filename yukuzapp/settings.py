@@ -45,24 +45,23 @@ INSTALLED_APPS = [
 
     # allauth app
 
-    'allauth',
-    'allauth.account',
+    # 'allauth',
+    # 'allauth.account',
     # 'allauth.socialaccount',
     # 'allauth.socialaccount.providers.facebook',
 
     # social auth with rest_framework django
     'oauth2_provider',
-    'social_django',
-    'rest_framework_social_oauth2',
+    # 'social_django',
+    # 'rest_framework_social_oauth2',
 
     'django_filters',
     'rest_auth.registration',
 
-    # firebase app
-
     # my apps
     'yukuz.apps.YukuzConfig',
-
+    'firebase',
+    'yukuz_auth'
 ]
 # firebase config
 FCM_APIKEY = "AIzaSyDZ5VnFid2Zv5hCKRCVHR7btlJ4A4Gebrk"
@@ -154,25 +153,25 @@ AUTHENTICATION_BACKENDS = (
     # `allauth` specific authentication methods, such as login by e-mail
     # 'allauth.account.auth_backends.AuthenticationBackend',
     # django-rest-framework-social-oauth2
-    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+    # 'rest_framework_social_oauth2.backends.DjangoOAuth2',
     # facebook OAuth2
-    'social_core.backends.facebook.FacebookAppOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',
+    # 'social_core.backends.facebook.FacebookAppOAuth2',
+    # 'social_core.backends.facebook.FacebookOAuth2',
     # DJango > it is very special for taking token from server
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 # config facebook
-SOCIAL_AUTH_FACEBOOK_KEY = '1321859597941315'
-SOCIAL_AUTH_FACEBOOK_SECRET = '87d81018e8d111bee2eac92f4f5f4294'
+# SOCIAL_AUTH_FACEBOOK_KEY = '1321859597941315'
+# SOCIAL_AUTH_FACEBOOK_SECRET = '87d81018e8d111bee2eac92f4f5f4294'
+#
+# SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+# SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+#     'fields': 'id, name, email'
+# }
 
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-    'fields': 'id, name, email'
-}
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True

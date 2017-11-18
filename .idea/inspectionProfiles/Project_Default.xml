@@ -14,7 +14,7 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="77">
+          <list size="84">
             <item index="0" class="java.lang.String" itemvalue="djangorestframework" />
             <item index="1" class="java.lang.String" itemvalue="drfdocs" />
             <item index="2" class="java.lang.String" itemvalue="traitlets" />
@@ -92,6 +92,13 @@
             <item index="74" class="java.lang.String" itemvalue="isort" />
             <item index="75" class="java.lang.String" itemvalue="webencodings" />
             <item index="76" class="java.lang.String" itemvalue="Pillow" />
+            <item index="77" class="java.lang.String" itemvalue="django-oauth2-provider" />
+            <item index="78" class="java.lang.String" itemvalue="fcm-django" />
+            <item index="79" class="java.lang.String" itemvalue="django-oauth2" />
+            <item index="80" class="java.lang.String" itemvalue="django-fcm" />
+            <item index="81" class="java.lang.String" itemvalue="pyfcm" />
+            <item index="82" class="java.lang.String" itemvalue="shortuuid" />
+            <item index="83" class="java.lang.String" itemvalue="requests-toolbelt" />
           </list>
         </value>
       </option>
