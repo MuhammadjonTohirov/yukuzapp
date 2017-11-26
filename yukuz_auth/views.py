@@ -1,9 +1,11 @@
+import json
+from os.path import basename
+
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
-from jsonpickle import json
 from rest_framework import generics, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
@@ -49,14 +51,40 @@ class UserDetail(generics.RetrieveAPIView):
     serializer_class = UserSerializers
 
 
-class DriverView(generics.CreateAPIView):
+class DriverView(generics.CreateAPIView, generics.ListAPIView, generics.UpdateAPIView):
     queryset = Driver.objects.all()
     serializer_class = DriverSerializers
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def perform_create(self, serializer):
-        driver_license_img = self.request.data.get('image')
-        serializer.save(driver=self.request.user, car=self.request.data['car'], driver_license=driver_license_img)
+        driver_license_img = self.request.data.get('driver_license')
+        serializer.save(driver=Person.objects.get(user=self.request.user), description=self.request.data['description'],
+                        driver_license=driver_license_img)
+
+    def get(self, request, *args, **kwargs):
+        try:
+            driver = Driver.objects.get(driver__user=request.user)
+            context = {'image': driver.driver_license.url, 'descr': driver.description,
+                       'image_title': basename(driver.driver_license.url)}
+            return HttpResponse(json.dumps(context))
+        except Exception as ex:
+            return HttpResponse(ex)
+
+    def update(self, request, *args, **kwargs):
+        context = {'success': False, 'driver_mode': False}
+        try:
+            driver = Driver.objects.get(driver__user=request.user)
+            driver.is_active = True if driver.is_active is False else False
+            driver.save()
+            context = {'success': True, 'driver_mode': driver.is_active}
+            return HttpResponse(json.dumps(context))
+        except:
+            context['driver_mode'] = False
+            return HttpResponse(json.dumps(context))
+
+    def handle_exception(self, exc):
+        context = {'success': False, 'driver_mode': False, 'exception': str(exc)}
+        return HttpResponse(json.dumps(context))
 
 
 class UserList(generics.ListAPIView):
@@ -99,3 +127,4 @@ class RegisterView(generics.CreateAPIView, generics.UpdateAPIView):
             User.save(user)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+

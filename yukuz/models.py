@@ -5,7 +5,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.conf import settings
 
-
 # Create your models here.
 # will create once user register or sign up.
 from yukuz_auth.models import Person, Driver
@@ -37,11 +36,12 @@ class VehicleType(models.Model):
 
 
 class Car(models.Model):
-    car_type = models.OneToOneField(VehicleType)
+    car_type = models.ForeignKey(VehicleType)
     title = models.CharField(max_length=50)
     number = models.CharField(max_length=15, primary_key=True)
     min_kg = models.PositiveIntegerField(default=1)
     max_kg = models.PositiveIntegerField(default=5)
+    # image = models.ImageField(upload_to='vehicles/', default='def_user.png')
     by_person = models.ForeignKey('yukuz_auth.Person')
 
     def description(self):
@@ -50,8 +50,6 @@ class Car(models.Model):
 
     def __str__(self):
         return self.car_type.title + " " + str(self.number)
-
-
 
 
 class PriceClass(models.Model):
@@ -94,9 +92,17 @@ class OrderImages(models.Model):
 
 
 class PickedOrder(models.Model):
-    order = models.OneToOneField(PostOrder)
+    order = models.OneToOneField(PostOrder, related_name='picked_order')
     picked_by = models.ForeignKey('yukuz_auth.Driver', )
     picked_time = models.DateTimeField(auto_now_add=True)
+
+    def delete(self, using=None, keep_parents=False):
+        # post = PostOrder.objects.get(pk=self.order)
+        # post.is_picked = False
+        # post.save()
+        self.order.is_picked = False
+        self.order.save()
+        super(PickedOrder, self).delete(using=None, keep_parents=False)
 
     def __str__(self):
         return str(self.picked_by.driver.ssn)

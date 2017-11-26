@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^posts/$', views.PostsList.as_view()),
     url(r'^picked_orders/$', views.PickedOrderList.as_view()),
 
-    url(r'^def/$', views.read_token),
+    url(r'^initialize/$', views.default_view),
 
     url(r'^get_price_class/$', view=views.getPriceClass),
     # url(r'^upload/$', views.UploadAvatar.as_view())

@@ -11,7 +11,7 @@ class VehicleTypeAdmin(admin.ModelAdmin):
 
 
 class CarAdmin(admin.ModelAdmin):
-    list_display = ['car_type', 'min_kg', 'max_kg', 'by_person']
+    list_display = ['title', 'min_kg', 'max_kg', 'by_person', 'number']
 
 
 class PostOrderAdmin(admin.ModelAdmin):

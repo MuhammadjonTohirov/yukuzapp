@@ -40,4 +40,4 @@ class PersonSerializers(serializers.ModelSerializer):
 class DriverSerializers(serializers.ModelSerializer):
     class Meta:
         model = Driver
-        fields = ['driver', 'car', 'driver_license']
+        fields = ['description', 'driver_license']

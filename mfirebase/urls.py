@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from firebase import views
+from mfirebase import views
 
 urlpatterns = [
     url(r'^devices/$', views.CreateDevice.as_view()),

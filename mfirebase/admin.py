@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from firebase.models import DeviceType, MobDevice
+from mfirebase.models import DeviceType, MobDevice
 
 
 class DeviceAdmin(admin.ModelAdmin):

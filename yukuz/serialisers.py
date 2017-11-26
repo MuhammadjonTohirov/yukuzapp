@@ -1,8 +1,7 @@
 from rest_framework import serializers
 
-from firebase.models import MobDevice
+from mfirebase.models import MobDevice
 from yukuz.models import VehicleType, Car, PostOrder, PickedOrder
-
 
 
 class VehicleTypeSerializers(serializers.ModelSerializer):
@@ -27,10 +26,17 @@ class PostOrderSerializers(serializers.ModelSerializer):
         # exclude = []
 
 
+class PostOrderSerializersForDriver(serializers.ModelSerializer):
+    class Meta:
+        model = PostOrder
+        # fields = ('id', 'post_title', 'order_time', 'deadline', 'currency_type', 'estimated_price', 'order_by')
+        exclude = ['is_cancelled']
+
+
 class PickedOrderSerializers(serializers.ModelSerializer):
     class Meta:
         model = PickedOrder
-        fields = ['order', 'picked_by', 'picked_time']
+        fields = ['order', 'picked_time']
 
 # class UploadAvatarSerializer(serializers.ModelSerializer):
 #     class Meta:

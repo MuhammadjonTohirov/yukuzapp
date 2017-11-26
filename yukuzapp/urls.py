@@ -28,5 +28,5 @@ urlpatterns = [
                   url(r'^docs/', include('rest_framework_docs.urls')),
                   url(r'^api-gettoken/$', views.obtain_auth_token),
                   url(r'^auth/', include('yukuz_auth.urls')),
-                  url(r'^firebase/', include('firebase.urls'))
+                  url(r'^firebase/', include('mfirebase.urls'))
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

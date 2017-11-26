@@ -25,8 +25,9 @@ class Person(models.Model):
 
 class Driver(models.Model):
     driver = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True, related_name='driver')
-    car = models.ForeignKey('yukuz.Car')
+    description = models.TextField(max_length=500, verbose_name="About driver")
     driver_license = models.ImageField(upload_to='licenses/', null=False)
+    is_active = models.BooleanField(default=True)
     reg_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_docs',
     'rest_auth',
-
     # allauth app
 
     # 'allauth',
@@ -61,10 +60,10 @@ INSTALLED_APPS = [
     # my apps
     'yukuz.apps.YukuzConfig',
     'firebase',
+    'mfirebase',
     'yukuz_auth'
 ]
 # firebase config
-FCM_APIKEY = "AIzaSyDZ5VnFid2Zv5hCKRCVHR7btlJ4A4Gebrk"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -103,6 +102,8 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptPasswordHasher',
 ]
 
+FCM_APIKEY = "AIzaSyCPLLDqrHTuFr0xqF4CRqrN7PF_9RjraHs"
+FIREBASE_DNS = 'https://yukuz-482b4.firebaseio.com/'
 WSGI_APPLICATION = 'yukuzapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

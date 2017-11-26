@@ -14,11 +14,11 @@ class DeviceType(models.Model):
 
 class MobDevice(models.Model):
     user_id = models.ForeignKey(Person, null=False)
-    device = models.CharField(max_length=512)
+    device = models.CharField(max_length=512, primary_key=True)
     type = models.ForeignKey(DeviceType)
     dev_version = models.CharField(max_length=50)
     is_driver = models.BooleanField(default=False)
     added = models.DateTimeField(auto_created=True, auto_now_add=True)
 
     def __str__(self):
-        return str(self.user_id.id)
+        return str(self.user_id.user)
