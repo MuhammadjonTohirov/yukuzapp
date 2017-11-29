@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import VehicleType, Car, OrderImages
-from .models import PostOrder, PickedOrder, PriceClass
+from .models import VehicleType, Car, OrderImages, DriverRate
+from .models import PostOrder, PickedOrder, PriceClass, DeliveringProcess
 
 
 # Register your models here.
@@ -23,6 +23,12 @@ class PickedOrderAdmin(admin.ModelAdmin):
     list_display = ['order', 'picked_time']
 
 
+class DriverRateAdmin(admin.ModelAdmin):
+    list_display = ['star_for', 'star', 'star_by']
+
+
+admin.site.register(DriverRate, DriverRateAdmin)
+admin.site.register(DeliveringProcess)
 admin.site.register(PriceClass)
 admin.site.register(OrderImages)
 # admin.site.register(UserAvatar)

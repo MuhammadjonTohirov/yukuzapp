@@ -109,16 +109,19 @@ class PickedOrder(models.Model):
 
 
 class DeliveringProcess(models.Model):
-    picked_order = models.ForeignKey('PickedOrder')
+    picked_order = models.ForeignKey('PickedOrder', related_name='delivering_process')
     assigned_to = models.ForeignKey(Driver)
     is_finished = models.BooleanField(default=False)
     start_time = models.DateTimeField(auto_now=True)
     end_time = models.DateTimeField(blank=True)
 
+    def __str__(self):
+        return str(self.picked_order) + " " + self.assigned_to.driver.phone_number
+
 
 class DriverRate(models.Model):
     star = models.PositiveIntegerField(default=0)
-    star_for = models.ForeignKey(PickedOrder)
+    star_for = models.ForeignKey('DeliveringProcess')
     star_by = models.ForeignKey(Person)
     description = models.TextField(default="")
 

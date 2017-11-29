@@ -2,7 +2,7 @@ import json
 from os.path import basename
 
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -12,6 +12,7 @@ from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 
+from yukuz.models import DriverRate
 from yukuz_auth.models import Person, Driver
 from yukuz_auth.serializers import PersonSerializers, UserSerializers, DriverSerializers
 
@@ -63,9 +64,38 @@ class DriverView(generics.CreateAPIView, generics.ListAPIView, generics.UpdateAP
 
     def get(self, request, *args, **kwargs):
         try:
-            driver = Driver.objects.get(driver__user=request.user)
-            context = {'image': driver.driver_license.url, 'descr': driver.description,
-                       'image_title': basename(driver.driver_license.url)}
+            purpose = request.GET['id']
+            context = {}
+            if purpose is "1":
+                total_data = []
+                drivers = request.GET.getlist('d_id')
+                for d in drivers:
+                    driver = Driver.objects.get(driver__user=d, )
+                    person = driver.driver
+                    user = driver.driver.user
+
+                    rate = DriverRate.objects.filter(star_for__assigned_to=driver, star_for__is_finished=True).count()
+                    context = {
+                        'license_image': driver.driver_license.url,
+                        'image': person.image.url,
+                        'description': driver.description,
+                        'image_title': basename(driver.driver_license.url),
+                        'first_name': user.first_name,
+                        'last_name': user.last_name,
+                        'ssn': person.ssn,
+                        'email': user.email,
+                        'phone_number': person.phone_number,
+                        'rate': rate
+                    }
+                    total_data.append(context.copy())
+                return HttpResponse(json.dumps(total_data))
+            elif purpose is "2":
+                driver = Driver.objects.get(driver__user=request.user)
+                context = {
+                    'desc': driver.description,
+                    'image_title': basename(driver.driver_license.url)
+                }
+
             return HttpResponse(json.dumps(context))
         except Exception as ex:
             return HttpResponse(ex)
@@ -127,4 +157,3 @@ class RegisterView(generics.CreateAPIView, generics.UpdateAPIView):
             User.save(user)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-

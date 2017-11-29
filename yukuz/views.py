@@ -190,7 +190,8 @@ class PickedOrderList(generics.ListAPIView, generics.CreateAPIView, generics.Upd
             if type == "1":  # get picked orders for driver
                 context = {"success": False, "data": ''}
                 print(str(Driver.objects.get(driver__user=request.user).pk))
-                posts = PickedOrder.objects.filter(picked_by=Driver.objects.get(driver__user=request.user)).all()
+                posts = PickedOrder.objects.filter(picked_by=Driver.objects.get(driver__user=request.user),
+                                                   order__is_cancelled=False, order__is_picked=False).all()
                 serializer = PickedOrderSerializers(posts, many=True)
                 data1 = serializers.serialize("json", posts)
                 context["data"] = serializer.data
@@ -208,6 +209,8 @@ class PickedOrderList(generics.ListAPIView, generics.CreateAPIView, generics.Upd
                     details['deadline'] = p.order.deadline.ctime()
                     details['posted_time'] = p.order.order_time.ctime()
                     details['posts_picked_count'] = p.picked_by.count()
+                    details['posts_picked'] = list(p.picked_by.values_list("driver"))
+                    print(p.picked_by.values("driver").all())
                     all_posts.append(details.copy())
                     i += 1
                 return HttpResponse(json.dumps(all_posts))
@@ -220,10 +223,11 @@ class PickedOrderList(generics.ListAPIView, generics.CreateAPIView, generics.Upd
         context = {"success": False}
         try:
             if serializer_class.is_valid(raise_exception=True):
-                pick = PickedOrder.objects.create(picked_by=Driver.objects.get(driver__user=request.user),
-                                                  **serializer_class.validated_data)
+                pick = PickedOrder.objects.create(**serializer_class.validated_data)
                 context["success"] = True
-                dev = MobDevice.objects.get(user_id__user=request.user)
+                pick.picked_by.add(request.user)
+                pick.save()
+                dev = MobDevice.objects.get(user_id__user=pick.order.order_by)
                 person = Person.objects.get(user=request.user)
 
                 body = {"user_id": request.user.pk,
