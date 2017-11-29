@@ -7,13 +7,12 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics, status
 from rest_framework.decorators import permission_classes, api_view
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 
 from mfirebase import notifications
 from mfirebase.models import MobDevice
-from yukuz.api.permissions import AllowAny
 from yukuz.serialisers import VehicleTypeSerializers, \
     PostOrderSerializers, PickedOrderSerializers, CarSerializers, PostOrderSerializersForDriver
 from yukuz.models import Person, VehicleType, PostOrder, PickedOrder, PriceClass, Driver, Car
@@ -113,26 +112,40 @@ class PostsList(generics.ListAPIView, generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer_class = PostOrderSerializers(data=request.data)
+        context = {"success": False, "time": None}
         if serializer_class.is_valid(raise_exception=True):
-            # PostOrder.objects.create(order_by=Person.objects.get(user=request.user), **serializer_class.validated_data)
+            post = PostOrder.objects.create(order_by=Person.objects.get(user=request.user),
+                                            **serializer_class.validated_data)
+            # post = PostOrder.objects.all()[0]
             cars = Car.objects.filter(car_type=request.data['type_of_vehicle']).exclude(
                 by_person=Person.objects.get(user=request.user)).all()
-            data = {}
             total_data = []
-            device = ''
+            person = Person.objects.get(user=request.user)
+            sender = ''
             for a in cars:
                 devs = MobDevice.objects.filter(user_id__driver__is_active=True,
                                                 user_id__driver=Driver.objects.get(driver=a.by_person)).all()
+                # there is a logical error, I have to look at this function one more time later;
+                device = ''
                 for d in devs:
-                    data = {'title': request.data['post_title'], 'body': 'order for ' + ' ' + a.title}
                     device = d.device
-                    total_data.append(data.copy())
+                order = request.data
+                body = {"user_id": request.user.pk,
+                        "image": str(person.image), "first_name": request.user.first_name,
+                        "last_name": request.user.last_name,
+                        "user_ssn": person.ssn, "user_email": request.user.email,
+                        "user_number": person.phone_number, 'order_id': post.id, 'order': order}
 
-            sender = {'token': device, 'title': 'order', 'body': total_data}
-            print(sender)
-            notifications.send_notification(sender)
-            return HttpResponse("{\"status\":\"created\"}")
-        return HttpResponse("{\"status\":\"not created\"}")
+                header = {"notif_type": "post_order"}
+
+                sender = {'token': device, 'title': (header), 'body': (body)}
+                context["success"] = True
+                context["time"] = str(post.order_time)
+                print(sender)
+                notifications.send_notification(sender)
+
+            return HttpResponse(json.dumps(sender))
+        return HttpResponse(json.dumps(context))
 
 
 class CarView(generics.ListAPIView, generics.CreateAPIView, generics.DestroyAPIView):
@@ -167,7 +180,7 @@ class CarView(generics.ListAPIView, generics.CreateAPIView, generics.DestroyAPIV
             return HttpResponse(json.dumps(context))
 
 
-class PickedOrderList(generics.ListAPIView, generics.CreateAPIView):
+class PickedOrderList(generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView):
     queryset = PickedOrder.objects.all()
     serializer_class = PickedOrderSerializers
 
@@ -175,13 +188,16 @@ class PickedOrderList(generics.ListAPIView, generics.CreateAPIView):
         try:
             type = request.GET['id']
             if type == "1":  # get picked orders for driver
-                context = {"success": False}
+                context = {"success": False, "data": ''}
+                print(str(Driver.objects.get(driver__user=request.user).pk))
                 posts = PickedOrder.objects.filter(picked_by=Driver.objects.get(driver__user=request.user)).all()
+                serializer = PickedOrderSerializers(posts, many=True)
                 data1 = serializers.serialize("json", posts)
-                return HttpResponse(data1)
+                context["data"] = serializer.data
+                return HttpResponse(json.dumps(context))
             elif type == "2":  # get picked orders for a person
-                context = {"success": False}
-                posts = PickedOrder.objects.filter(order__order_by=Person.objects.get(user=request.user)).all()
+                posts = PickedOrder.objects.filter(order__order_by=Person.objects.get(user=request.user)).order_by(
+                    'picked_time').all()
                 details = {}
                 all_posts = []
                 i = 0
@@ -191,14 +207,7 @@ class PickedOrderList(generics.ListAPIView, generics.CreateAPIView):
                     details['description'] = p.order.description
                     details['deadline'] = p.order.deadline.ctime()
                     details['posted_time'] = p.order.order_time.ctime()
-                    details['picked_by_first_name'] = Person.objects.get(
-                        driver=p.picked_by).user.first_name
-                    details['picked_by_last_name'] = Person.objects.get(
-                        driver=p.picked_by).user.last_name
-                    details['picked_by_ssn'] = Person.objects.get(driver=p.picked_by).ssn
-                    details['picked_by_email'] = Person.objects.get(driver=p.picked_by).user.email
-                    details['picked_by_id'] = p.picked_by.pk
-                    details['picked_by_phone_number'] = Person.objects.get(driver=p.picked_by).phone_number
+                    details['posts_picked_count'] = p.picked_by.count()
                     all_posts.append(details.copy())
                     i += 1
                 return HttpResponse(json.dumps(all_posts))
@@ -209,15 +218,33 @@ class PickedOrderList(generics.ListAPIView, generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         serializer_class = PickedOrderSerializers(data=request.data)
         context = {"success": False}
-        if serializer_class.is_valid(raise_exception=True):
-            PickedOrder.objects.create(picked_by=Driver.objects.get(driver__user=request.user),
-                                       **serializer_class.validated_data)
-            post = PostOrder.objects.get(pk=request.data['order'])
-            post.is_picked = True
-            post.save()
-            context["success"] = True
+        try:
+            if serializer_class.is_valid(raise_exception=True):
+                pick = PickedOrder.objects.create(picked_by=Driver.objects.get(driver__user=request.user),
+                                                  **serializer_class.validated_data)
+                context["success"] = True
+                dev = MobDevice.objects.get(user_id__user=request.user)
+                person = Person.objects.get(user=request.user)
+
+                body = {"user_id": request.user.pk,
+                        "image": str(person.image), "full_name": request.user.first_name + " " + request.user.last_name,
+                        "order_id": pick.order_id, "time": pick.picked_time,
+                        "user_ssn": person.ssn, "user_email": request.user.email,
+                        "user_number": person.phone_number}
+
+                header = {"notif_type": "pick_order"}
+
+                data = {"token": dev.device, "title": header, "body": body}
+                notifications.send_notification(data)
+                return HttpResponse(json.dumps(context))
             return HttpResponse(json.dumps(context))
-        return HttpResponse(json.dumps(context))
+        except Exception as ex:
+            self.handle_exception(ex)
+
+        def update(self, request, *args, **kwargs):
+            context = {'success': True}
+
+            return HttpResponse(json.dumps(context))
 
     def handle_exception(self, exc):
         context = {"success": False, 'exception': str(exc)}

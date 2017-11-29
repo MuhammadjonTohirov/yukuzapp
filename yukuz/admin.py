@@ -19,7 +19,8 @@ class PostOrderAdmin(admin.ModelAdmin):
 
 
 class PickedOrderAdmin(admin.ModelAdmin):
-    list_display = ['order', 'picked_by', 'picked_time']
+    filter_horizontal = ('picked_by',)
+    list_display = ['order', 'picked_time']
 
 
 admin.site.register(PriceClass)

@@ -92,8 +92,8 @@ class OrderImages(models.Model):
 
 
 class PickedOrder(models.Model):
-    order = models.OneToOneField(PostOrder, related_name='picked_order')
-    picked_by = models.ForeignKey('yukuz_auth.Driver', )
+    order = models.ForeignKey(PostOrder)
+    picked_by = models.ManyToManyField('yukuz_auth.Driver', blank=True, )
     picked_time = models.DateTimeField(auto_now_add=True)
 
     def delete(self, using=None, keep_parents=False):
@@ -105,7 +105,15 @@ class PickedOrder(models.Model):
         super(PickedOrder, self).delete(using=None, keep_parents=False)
 
     def __str__(self):
-        return str(self.picked_by.driver.ssn)
+        return self.order.post_title
+
+
+class DeliveringProcess(models.Model):
+    picked_order = models.ForeignKey('PickedOrder')
+    assigned_to = models.ForeignKey(Driver)
+    is_finished = models.BooleanField(default=False)
+    start_time = models.DateTimeField(auto_now=True)
+    end_time = models.DateTimeField(blank=True)
 
 
 class DriverRate(models.Model):

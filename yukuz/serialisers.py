@@ -36,7 +36,7 @@ class PostOrderSerializersForDriver(serializers.ModelSerializer):
 class PickedOrderSerializers(serializers.ModelSerializer):
     class Meta:
         model = PickedOrder
-        fields = ['order', 'picked_time']
+        fields = ['order', 'picked_by', 'picked_time']
 
 # class UploadAvatarSerializer(serializers.ModelSerializer):
 #     class Meta:
