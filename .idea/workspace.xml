@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d42b7c0a-78b1-4f9b-b572-035f46a8fe8a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/pc.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yukuz/admin.py" afterPath="$PROJECT_DIR$/yukuz/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yukuz/models.py" afterPath="$PROJECT_DIR$/yukuz/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yukuz/views.py" afterPath="$PROJECT_DIR$/yukuz/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/yukuz_auth/views.py" afterPath="$PROJECT_DIR$/yukuz_auth/views.py" />
     </list>
+    <ignored path="yukuz_auth/migrations/" />
+    <ignored path="yukuz/migrations/" />
+    <ignored path="mfirebase/migrations/" />
+    <ignored path="db.sqlite3" />
+    <ignored path="templates/" />
     <manually-removed-from-ignored>
       <directory path="yukuzenv/" />
-      <directory path="templates/" />
     </manually-removed-from-ignored>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,11 +47,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/yukuz/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="204" column="31" lean-forward="true" selection-start-line="204" selection-start-column="31" selection-end-line="204" selection-end-column="31" />
+            <state relative-caret-position="329">
+              <caret line="137" column="92" lean-forward="false" selection-start-line="137" selection-start-column="92" selection-end-line="137" selection-end-column="92" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
                 <element signature="e#1171#2071#0" expanded="false" />
@@ -68,15 +68,15 @@
                 <element signature="e#3280#3421#0" expanded="false" />
                 <element signature="e#3590#4305#0" expanded="false" />
                 <element signature="e#3872#4191#0" expanded="false" />
-                <element signature="e#6514#8028#0" expanded="false" />
-                <element signature="e#6586#6625#0" expanded="false" />
-                <element signature="e#7029#7232#0" expanded="false" />
-                <element signature="e#7288#7656#0" expanded="false" />
-                <element signature="e#7413#7594#0" expanded="false" />
-                <element signature="e#7714#8028#0" expanded="false" />
-                <element signature="e#7768#7944#0" expanded="false" />
-                <element signature="e#11716#11761#0" expanded="false" />
-                <element signature="e#12409#12563#0" expanded="false" />
+                <element signature="e#6714#8228#0" expanded="false" />
+                <element signature="e#6786#6825#0" expanded="false" />
+                <element signature="e#7229#7432#0" expanded="false" />
+                <element signature="e#7488#7856#0" expanded="false" />
+                <element signature="e#7613#7794#0" expanded="false" />
+                <element signature="e#7914#8228#0" expanded="false" />
+                <element signature="e#7968#8144#0" expanded="false" />
+                <element signature="e#11916#11961#0" expanded="false" />
+                <element signature="e#12609#12763#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -92,11 +92,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yukuz_auth/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="89" column="36" lean-forward="false" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
+            <state relative-caret-position="-247">
+              <caret line="74" column="16" lean-forward="false" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -108,7 +108,7 @@
         <entry file="file://$PROJECT_DIR$/yukuz_auth/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="108">
-              <caret line="8" column="38" lean-forward="true" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
+              <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -137,8 +137,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yukuz/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+            <state relative-caret-position="1705">
+              <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -158,7 +158,7 @@
         <entry file="file://$PROJECT_DIR$/yukuz/admin.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
-              <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+              <caret line="35" column="34" lean-forward="false" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -266,8 +266,8 @@
         <option value="$PROJECT_DIR$/yukuz/serialisers.py" />
         <option value="$PROJECT_DIR$/yukuz/models.py" />
         <option value="$PROJECT_DIR$/yukuz/admin.py" />
-        <option value="$PROJECT_DIR$/yukuz/views.py" />
         <option value="$PROJECT_DIR$/yukuz_auth/views.py" />
+        <option value="$PROJECT_DIR$/yukuz/views.py" />
       </list>
     </option>
   </component>
@@ -348,8 +348,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/yukuzenv/Scripts/python.exe" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Sqlite (Xerial)" />
   </component>
@@ -433,7 +433,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297546" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32822084" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294509" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39600664" sideWeight="0.4969743" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39600664" sideWeight="0.4969743" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2719697" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22575757" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32612312" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -735,18 +735,10 @@
     <entry file="file://$PROJECT_DIR$/yukuz/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+          <caret line="35" column="34" lean-forward="false" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -761,15 +753,33 @@
     <entry file="file://$PROJECT_DIR$/yukuz_auth/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
-          <caret line="8" column="38" lean-forward="true" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
+          <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_auth/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-247">
+          <caret line="74" column="16" lean-forward="false" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1705">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yukuz/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="204" column="31" lean-forward="true" selection-start-line="204" selection-start-column="31" selection-end-line="204" selection-end-column="31" />
+        <state relative-caret-position="329">
+          <caret line="137" column="92" lean-forward="false" selection-start-line="137" selection-start-column="92" selection-end-line="137" selection-end-column="92" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#1171#2071#0" expanded="false" />
@@ -786,25 +796,15 @@
             <element signature="e#3280#3421#0" expanded="false" />
             <element signature="e#3590#4305#0" expanded="false" />
             <element signature="e#3872#4191#0" expanded="false" />
-            <element signature="e#6514#8028#0" expanded="false" />
-            <element signature="e#6586#6625#0" expanded="false" />
-            <element signature="e#7029#7232#0" expanded="false" />
-            <element signature="e#7288#7656#0" expanded="false" />
-            <element signature="e#7413#7594#0" expanded="false" />
-            <element signature="e#7714#8028#0" expanded="false" />
-            <element signature="e#7768#7944#0" expanded="false" />
-            <element signature="e#11716#11761#0" expanded="false" />
-            <element signature="e#12409#12563#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_auth/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="89" column="36" lean-forward="false" selection-start-line="89" selection-start-column="36" selection-end-line="89" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#6714#8228#0" expanded="false" />
+            <element signature="e#6786#6825#0" expanded="false" />
+            <element signature="e#7229#7432#0" expanded="false" />
+            <element signature="e#7488#7856#0" expanded="false" />
+            <element signature="e#7613#7794#0" expanded="false" />
+            <element signature="e#7914#8228#0" expanded="false" />
+            <element signature="e#7968#8144#0" expanded="false" />
+            <element signature="e#11916#11961#0" expanded="false" />
+            <element signature="e#12609#12763#0" expanded="false" />
           </folding>
         </state>
       </provider>

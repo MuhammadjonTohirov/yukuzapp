@@ -121,7 +121,7 @@ class PostsList(generics.ListAPIView, generics.CreateAPIView):
                 by_person=Person.objects.get(user=request.user)).all()
             total_data = []
             person = Person.objects.get(user=request.user)
-            sender = ''
+            sender = 'nothing here'
             for a in cars:
                 devs = MobDevice.objects.filter(user_id__driver__is_active=True,
                                                 user_id__driver=Driver.objects.get(driver=a.by_person)).all()
@@ -134,7 +134,9 @@ class PostsList(generics.ListAPIView, generics.CreateAPIView):
                         "image": str(person.image), "first_name": request.user.first_name,
                         "last_name": request.user.last_name,
                         "user_ssn": person.ssn, "user_email": request.user.email,
-                        "user_number": person.phone_number, 'order_id': post.id, 'order': order}
+                        "user_number": person.phone_number, 'order_id': post.id,
+                        'currency': PriceClass.objects.get(id=order['currency_type']).title,
+                        'vehicle': VehicleType.objects.get(id=order['type_of_vehicle']).title, 'order': order}
 
                 header = {"notif_type": "post_order"}
 
