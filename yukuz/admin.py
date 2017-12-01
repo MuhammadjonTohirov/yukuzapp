@@ -15,6 +15,7 @@ class CarAdmin(admin.ModelAdmin):
 
 
 class PostOrderAdmin(admin.ModelAdmin):
+    list_filter = ['order_by']
     list_display = ['post_title', 'source_address', 'destination_address', 'order_by', 'order_time']
 
 

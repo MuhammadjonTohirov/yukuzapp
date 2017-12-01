@@ -113,7 +113,14 @@ class DeliveringProcess(models.Model):
     assigned_to = models.ForeignKey(Driver)
     is_finished = models.BooleanField(default=False)
     start_time = models.DateTimeField(auto_now=True)
-    end_time = models.DateTimeField(blank=True)
+    end_time = models.DateTimeField(blank=True, null=True)
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        order = PostOrder.objects.get(pk=self.picked_order.order_id)
+        order.is_picked = True
+        order.save()
+        super(DeliveringProcess, self).save(force_insert, force_update, using, update_fields)
 
     def __str__(self):
         return str(self.picked_order) + " " + self.assigned_to.driver.phone_number
