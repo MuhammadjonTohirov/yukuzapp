@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework_docs',
     'allauth',
     'pyfcm',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +80,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'yukuz_v2.wsgi.application'
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler'
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases

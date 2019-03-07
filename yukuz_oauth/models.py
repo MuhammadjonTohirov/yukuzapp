@@ -72,7 +72,7 @@ class Person(models.Model):
                                 on_delete=models.CASCADE,
                                 primary_key=True)
 
-    ssn = models.PositiveIntegerField(verbose_name='ssn')
+    ssn = models.PositiveIntegerField(verbose_name='ssn', unique=True)
     image = models.ImageField(verbose_name='image', default='image/def_user', upload_to='images/users')
     joined_date = models.DateTimeField(auto_now_add=True)
 

@@ -1,10 +1,12 @@
+from rest_framework.response import Response
+
 from yukuz_oauth.models import UUser
 from yukuz_oauth.models import Person, Driver
 
 from django.contrib.auth import authenticate
 from django.utils.translation import ugettext_lazy as _
 
-from rest_framework import serializers
+from rest_framework import serializers, status
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -27,9 +29,40 @@ class UserSerializers(serializers.ModelSerializer):
 
 
 class PersonSerializers(serializers.ModelSerializer):
+    ssn = serializers.IntegerField(min_value=0, required=True)
+    image = serializers.ImageField(required=True)
+
+    def __init__(self, user, **kwargs):
+        super().__init__(**kwargs)
+        self.user = user
+        self.status = False
+
+    def create(self, validated_data):
+        print("create a person serializer")
+        ssn = validated_data.get('ssn')
+
+        return Person.objects.create(**validated_data)
+
+    # def update(self, instance, validated_data):
+    #     print("updating the person serializer")
+    #     instance.ssn = validated_data.get('ssn', instance.ssn)
+    #     instance.image = validated_data.get('image', instance.image)
+    #     instance.save()
+    #
+    #     return instance
+
+    def is_valid(self, raise_exception=False):
+        super().is_valid(raise_exception=raise_exception)
+        number_of_persons = Person.objects.filter(user=self.user).count()
+        if number_of_persons > 0:
+            self._errors['message'] = 'person has been created already'
+            return False
+        return True
+
     class Meta:
         model = Person
-        fields = ['ssn', 'image', 'user']
+        fields = ['ssn', 'image']
+
         # exclude = ['user']
 
 

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-# from mfirebase.models import MobDevice
+# from yukuz_firebase.models import MobDevice
 from yukuz_main.models import VehicleType, Car, PostOrder, PickedOrder
 
 
