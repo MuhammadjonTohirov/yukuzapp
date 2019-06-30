@@ -57,11 +57,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'yukuz_main.Middleware.process_exception'
 ]
 
 ROOT_URLCONF = 'yukuz_v2.urls'
 SITE_ID = 1
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -80,10 +80,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'yukuz_v2.wsgi.application'
-
-REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler'
-}
+# USER_MODEL_USERNAME_FIELD = 'username'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -131,6 +128,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    # 'EXCEPTION_HANDLER': (
+    #     'rest_framework.views.exception_handler',
+    # ),
     # 'DEFAULT_FILTER_BACKENDS': (
     #     'django_filters.rest_framework.DjangoFilterBackend',
     #     'rest_framework.filters.SearchFilter',
@@ -141,6 +141,7 @@ REST_FRAMEWORK = {
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
+    # 'yukuz_oauth.settings.SettingsBackend'
 )
 
 PASSWORD_HASHERS = [
@@ -156,7 +157,7 @@ PASSWORD_HASHERS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 

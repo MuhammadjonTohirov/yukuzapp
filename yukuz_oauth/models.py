@@ -9,20 +9,20 @@ from django.core.validators import RegexValidator
 class UBaseManager(BaseUserManager):
     use_in_migrations = True
 
-    def create_user(self, phone_number, password):
-        if not password or not phone_number:
+    def create_user(self, username, password):
+        if not password or not username:
             raise ValueError("you need to set phone number and password ")
 
         user = self.model(
-            phone_number=phone_number
+            username=username
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, phone_number, password):
+    def create_superuser(self, username, password):
         user = self.create_user(
-            phone_number=phone_number,
+            username=username,
             password=password)
         user.is_admin = True
         user.is_staff = True
@@ -30,24 +30,26 @@ class UBaseManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def get_by_natural_key(self, phone_number):
-        return self.get(phone_number=phone_number)
+    def get_by_natural_key(self, username):
+        return self.get(username=username)
 
 
 class UUser(AbstractBaseUser, PermissionsMixin):
-    phone_number = models.CharField(max_length=9,
-                                    validators=[
-                                        RegexValidator(regex='^[0-9]*$',
-                                                       message='Phone number should be numbers only',
-                                                       code='invalid phone number')
-                                    ],
-                                    unique=True
-                                    )
+    username = models.CharField(max_length=9,
+                                validators=[
+                                    RegexValidator(regex='^[0-9]*$',
+                                                   message='Phone number should be numbers only',
+                                                   code='invalid phone number')
+                                ],
+                                verbose_name='Phone number',
+                                unique=True,
+                                default='935852415'
+                                )
 
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    # is_active = models.BooleanField(default=False)
+    creation_date = models.DateTimeField(auto_created=True, auto_now=True)
     objects = UBaseManager()
 
     def has_perm(self, perm, obj=None):
@@ -57,13 +59,18 @@ class UUser(AbstractBaseUser, PermissionsMixin):
         return self.is_superuser
 
     def get_short_name(self):
-        return self.phone_number
+        return self.username
+
+    def dict(self):
+        return {
+            'user_name': self.username
+        }
 
     class Meta:
         verbose_name = 'User'
 
-    USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = []
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['password']
 
 
 class Person(models.Model):
@@ -72,15 +79,32 @@ class Person(models.Model):
                                 on_delete=models.CASCADE,
                                 primary_key=True)
 
-    ssn = models.PositiveIntegerField(verbose_name='ssn', unique=True)
+    ssn = models.PositiveIntegerField(verbose_name='SSN', unique=True)
+    first_name = models.CharField(max_length=50, verbose_name='First Name', blank=False, default='')
+    last_name = models.CharField(max_length=50, verbose_name='Last Name', blank=False, default='')
+    email = models.CharField(max_length=50, verbose_name='e-mail', blank=True, default='')
     image = models.ImageField(verbose_name='image', default='image/def_user', upload_to='images/users')
     joined_date = models.DateTimeField(auto_now_add=True)
 
+    def full_name(self):
+        return self.first_name + ' ' + self.last_name
+
     def __str__(self):
-        return str(self.ssn) + " " + UUser(self.user).phone_number
+        return str(self.ssn) + " " + UUser(self.user).username
 
     def delete(self, using=None, keep_parents=False):
         super(Person, self).delete(using=None, keep_parents=False)
+
+    def dict(self):
+        return {
+            'user': self.user.__str__(),
+            'ssn': self.ssn,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'email': self.email,
+            'image': self.image.__str__(),
+            'joined_date': self.joined_date.__str__()
+        }
 
 
 class Driver(models.Model):
@@ -95,7 +119,7 @@ class Driver(models.Model):
     reg_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return UUser(self.driver.user).phone_number
+        return UUser(self.driver.user).username
 
     def delete(self, using=None, keep_parents=False):
         super(Driver, self).delete(using=None, keep_parents=False)

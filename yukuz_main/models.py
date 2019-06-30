@@ -12,10 +12,12 @@ from yukuz_oauth.models import Person, Driver
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
-        print("token: " + UUser(sender).phone_number)
+        print("token: " + UUser(sender).username)
         from rest_framework.authtoken.models import Token
-        Token.objects.create(user=instance)
+        token = Token.objects.create(user=instance)
         print("not created")
+        return token
+    return None
 
 
 class VehicleType(models.Model):
@@ -130,7 +132,7 @@ class DeliveringProcess(models.Model):
         super(DeliveringProcess, self).save(force_insert, force_update, using, update_fields)
 
     def __str__(self):
-        return str(self.picked_order) + " " + self.assigned_to.driver.phone_number
+        return str(self.picked_order) + " " + self.assigned_to.driver.user.username
 
     class Meta:
         verbose_name_plural = 'Delivering Processes'

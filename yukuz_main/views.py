@@ -17,11 +17,45 @@ from yukuz_main.serializers import VehicleTypeSerializers, \
     PostOrderSerializers, PickedOrderSerializers, CarSerializers, PostOrderSerializersForDriver
 from yukuz_main.models import Person, VehicleType, PostOrder, PickedOrder, PriceClass, Driver, Car
 
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.settings import api_settings
+
 
 # Create your views here.
 
 
-class VehicleTypeList(generics.ListAPIView, generics.CreateAPIView):
+class ListModelMixin(object):
+    """
+    List a queryset.
+    """
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        content = {
+            'objects': serializer.data
+        }
+        return Response(content)
+
+
+class ListAPIView(ListModelMixin,
+                  generics.GenericAPIView):
+    """
+    Concrete view for listing a queryset.
+    """
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+class VehicleTypeList(ListAPIView, generics.CreateAPIView):
     queryset = VehicleType.objects.all()
     serializer_class = VehicleTypeSerializers
     permission_classes = ((AllowAny,))
@@ -75,7 +109,7 @@ def update_post(request):
         return HttpResponse("Send POST request")
 
 
-class PostsList(generics.ListAPIView, generics.CreateAPIView):
+class PostsList(ListAPIView, generics.CreateAPIView):
     def get(self, request, *args, **kwargs):
         try:
             type = request.GET['id']
@@ -152,7 +186,7 @@ class PostsList(generics.ListAPIView, generics.CreateAPIView):
                         "image": str(person.image), "first_name": request.user.first_name,
                         "last_name": request.user.last_name,
                         "user_ssn": person.ssn, "user_email": request.user.email,
-                        "user_number": person.phone_number, 'order_id': post.id,
+                        "user_number": person.username, 'order_id': post.id,
                         'currency': PriceClass.objects.get(id=order['currency_type']).title,
                         'vehicle': VehicleType.objects.get(id=order['type_of_vehicle']).title, 'order': order}
 
@@ -168,7 +202,7 @@ class PostsList(generics.ListAPIView, generics.CreateAPIView):
         return HttpResponse(json.dumps(context))
 
 
-class CarView(generics.ListAPIView, generics.CreateAPIView, generics.DestroyAPIView):
+class CarView(ListAPIView, generics.CreateAPIView, generics.DestroyAPIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializers
 
@@ -180,7 +214,9 @@ class CarView(generics.ListAPIView, generics.CreateAPIView, generics.DestroyAPIV
     def get(self, request, *args, **kwargs):
         queryset = Car.objects.filter(by_person=Person.objects.get(user=request.user))
         serializer = CarSerializers(queryset, many=True)
-        return HttpResponse(JSONRenderer().render(serializer.data))
+        return HttpResponse(JSONRenderer().render({
+            "object": serializer.data
+        }))
 
     def post(self, request, *args, **kwargs):
         serializer_class = CarSerializers(data=request.data)

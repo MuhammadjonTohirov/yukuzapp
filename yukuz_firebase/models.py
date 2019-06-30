@@ -20,5 +20,13 @@ class MobDevice(models.Model):
     is_driver = models.BooleanField(default=False)
     added = models.DateTimeField(auto_created=True, auto_now_add=True)
 
+    def dict(self):
+        return {
+            'user': self.user_id.user.username,
+            'token': self.token,
+            'is_driver': self.is_driver,
+            'creation_date': self.added
+        }
+
     def __str__(self):
         return str(self.user_id.user)

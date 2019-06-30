@@ -1,6 +1,9 @@
 import json
 from os.path import basename
 
+from django.contrib import auth
+
+from yukuz_main.views import ListAPIView
 from yukuz_oauth.models import UUser
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -30,35 +33,37 @@ class UserDetail(generics.RetrieveAPIView):
     serializer_class = UserSerializers
 
 
-class UserList(generics.ListAPIView):
+class UserList(ListAPIView):
     queryset = UUser.objects.all()
     serializer_class = UserSerializers
 
 
-class RegisterAndUpdateView(generics.CreateAPIView, generics.UpdateAPIView):
-    queryset = UUser.objects.all()
-    permission_classes = (AllowAny,)
-    serializer_class = UserSerializers
+@api_view(['POST'])
+@permission_classes((AllowAny,))
+def register(request):
+    serializer = UserSerializers(data=request.data)
+    if serializer.is_valid():
+        create(request.data)
+        return YResponse.success_response(serializer.data)
+    return YResponse.failure_response(serializer.errors)
 
-    def perform_create(self, serializer):
-        data = self.request.data
-        create(data)
 
-    def perform_update(self, serializer):
-        if self.request.auth is not None:
-            print("update user value")
-            phone_number = self.request.data['phone_number']
-            password = self.request.data['password']
-            user = UUser.objects.filter(pk=self.request.user.id).get()
-            user.set_password(password)
-            user.phone_number = phone_number
-            UUser.save(user)
-        else:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PATCH'])
+@permission_classes((IsAuthenticated,))
+def update_password(request):
+    instance = UUser.objects.get(username=request.user.username)
+
+    password = request.data.get('password')
+    if password is None:
+        return YResponse.failure_response('password field is required')
+    else:
+        instance.set_password(password)
+        instance.save()
+        return YResponse.success_response(instance.dict())
 
 
 def create(usr):
-    user = UUser(phone_number=usr['phone_number'])
+    user = UUser(username=usr['username'])
     user.set_password(usr['password'])
     user.is_staff = True
     try:
@@ -78,7 +83,7 @@ class Login(APIView):
         schema = ManualSchema(
             fields=[
                 coreapi.Field(
-                    name="phone_number",
+                    name="username",
                     required=True,
                     location='form',
                     schema=coreschema.String(
@@ -100,32 +105,32 @@ class Login(APIView):
         )
 
     def post(self, request, *args, **kwargs):
+
         serializer = self.serializer_class(data=request.data,
                                            context={'request': request})
         serializer.is_valid(raise_exception=True)
+        print(serializer.error_messages)
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
+
         return Response({'token': token.key})
 
 
 obtain_auth_token = Login.as_view()
 
 
-class PersonList(generics.ListAPIView, generics.ListCreateAPIView):
+class PersonList(ListAPIView, generics.ListCreateAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializers
     parser_classes = (MultiPartParser, FormParser, JSONParser)
 
     def perform_create(self, serializer):
         avatar = self.request.data.get('image')
-        # avatar = avatar.thumbnail(avatar.width / 2, avatar.height / 2, avatar.ANTIALIAS)
-        # Person.objects.get_or_create(ssn=self.request.data['ssn'], phone_number=self.request.data['phone_number'],
-        #                              user=self.request.user, image=avatar)
         serializer.save(user=self.request.user, ssn=self.request.data['ssn'],
-                        phone_number=self.request.data['phone_number'], image=avatar)
+                        username=self.request.data['username'], image=avatar)
 
 
-class PersonView(generics.ListAPIView, generics.ListCreateAPIView, generics.UpdateAPIView):
+class PersonView(ListAPIView, generics.ListCreateAPIView, generics.UpdateAPIView):
     queryset = Person.objects.all()
     serializer_class = PersonSerializers
     parser_classes = (MultiPartParser, FormParser, JSONParser)
@@ -142,16 +147,28 @@ class PersonView(generics.ListAPIView, generics.ListCreateAPIView, generics.Upda
                 serializer_class.save()
                 return YResponse.created_response(serializer_class.data)
             return YResponse.failure_response(serializer_class.errors)
-        return YResponse.failure_response("cannot create")
+        else:
+            return YResponse.failure_response({
+                'message': 'The person with ssn is exists'
+            })
 
     def patch(self, request, *args, **kwargs):
-        person_list = Person.objects.filter(user=request.user)
+
+        person_list = Person.objects.filter(user_id=request.user.id)
         number_of_person_user_id = person_list.count()
         self.serializer_class = PersonSerializers(data=self.request.data, user=request.user)
         if number_of_person_user_id == 1:
             try:
-                Person.objects.update(user=request.user, ssn=request.data['ssn'], image=request.data['image'])
-                return YResponse.success_response("person updated successfully")
+                person = person_list[0]
+                person.ssn = request.data.get('ssn', person.ssn)
+                person.image = request.data.get('image', person.image)
+                person.first_name = request.data.get('first_name', person.first_name)
+                person.last_name = request.data.get('last_name', person.last_name)
+                person.email = request.data.get('email', person.email)
+                person.save()
+                import json
+                print(person.dict())
+                return YResponse.success_response(person.dict())
             except:
                 return YResponse.failure_response("Bad parameters")
         else:
@@ -171,7 +188,7 @@ class DriverView(generics.CreateAPIView, generics.ListAPIView, generics.UpdateAP
     def get(self, request, *args, **kwargs):
         try:
             purpose = request.GET['id']
-            context = {"status": False}
+            context = {"status": 400}
             if purpose == u'1':
                 total_data = []
                 drivers = request.GET.getlist('d_id')
@@ -190,7 +207,7 @@ class DriverView(generics.CreateAPIView, generics.ListAPIView, generics.UpdateAP
                         'last_name': user.last_name,
                         'ssn': person.ssn,
                         'email': user.email,
-                        'phone_number': person.phone_number,
+                        'username': person.username,
                         'rate': rate
                     }
                     total_data.append(context.copy())
@@ -210,7 +227,7 @@ class DriverView(generics.CreateAPIView, generics.ListAPIView, generics.UpdateAP
                     'last_name': user.last_name,
                     'ssn': person.ssn,
                     'email': user.email,
-                    'phone_number': person.phone_number,
+                    'username': person.username,
                     'rate': rate
                 }
 
@@ -243,7 +260,7 @@ def get_id(request):
     dictionary = {"first_name": str(user.first_name),
                   "last_name": str(user.last_name),
                   "ssn": str(person.ssn),
-                  "phone": str(person.phone_number),
+                  "phone": str(person.username),
                   "image": str(person.image)}
 
     return HttpResponse(json.dumps(dictionary))

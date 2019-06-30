@@ -12,7 +12,7 @@ from rest_framework import serializers, status
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UUser
-        fields = ('password', 'phone_number',)
+        fields = ('password', 'username',)
         write_only_fields = ('password',)
         read_only_fields = ('is_staff', 'is_superuser', 'date_joined',)
 
@@ -25,7 +25,14 @@ class UserSerializer(serializers.ModelSerializer):
 class UserSerializers(serializers.ModelSerializer):
     class Meta:
         model = UUser
-        fields = ('id', 'phone_number')
+
+        fields = ('id',
+                  'username')
+
+    def update(self, instance, validated_data):
+        instance.password = validated_data.get('password', instance.password)
+        instance.save()
+        return instance
 
 
 class PersonSerializers(serializers.ModelSerializer):
@@ -39,7 +46,7 @@ class PersonSerializers(serializers.ModelSerializer):
 
     def create(self, validated_data):
         print("create a person serializer")
-        ssn = validated_data.get('ssn')
+        # ssn = validated_data.get('ssn')
 
         return Person.objects.create(**validated_data)
 
@@ -73,7 +80,13 @@ class DriverSerializers(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.Serializer):
-    phone_number = serializers.CharField(label=_("Phone number"))
+    def create(self, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass
+
+    username = serializers.CharField(label=_("Phone number"))
     password = serializers.CharField(
         label=_("Password"),
         style={'input_type': 'password'},
@@ -81,13 +94,13 @@ class LoginSerializer(serializers.Serializer):
     )
 
     def validate(self, attrs):
-        phone_number = attrs.get('phone_number')
+        username = attrs.get('username')
         password = attrs.get('password')
 
-        if phone_number and password:
+        if username and password:
             user = authenticate(request=self.context.get('request'),
-                                phone_number=phone_number, password=password)
-
+                                username=username, password=password)
+            print(user)
             # The authenticate call simply returns None for is_active=False
             # users. (Assuming the default ModelBackend authentication
             # backend.)
