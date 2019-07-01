@@ -46,7 +46,6 @@ class PersonSerializers(serializers.ModelSerializer):
 
     def create(self, validated_data):
         print("create a person serializer")
-        # ssn = validated_data.get('ssn')
 
         return Person.objects.create(**validated_data)
 
@@ -68,15 +67,13 @@ class PersonSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Person
-        fields = ['ssn', 'image']
-
-        # exclude = ['user']
+        fields = ['ssn', 'image', 'first_name', 'last_name', 'email']
 
 
 class DriverSerializers(serializers.ModelSerializer):
     class Meta:
         model = Driver
-        fields = ['description', 'driver_license']
+        fields = ['description', 'driver_license', "is_active", "reg_date"]
 
 
 class LoginSerializer(serializers.Serializer):

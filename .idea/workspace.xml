@@ -1,45 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f52d019f-c26f-4cf8-b45d-e8102b6588e3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/yukuz_main/Middleware.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yukuz_oauth/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yukuz_oauth/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8354d44f-a0da-4bbf-a979-3ec53494aaf1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/hacker.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/hacker.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f52d019f-c26f-4cf8-b45d-e8102b6588e3" name="Default Changelist" comment="little improvement,&#10;bug fix&#10;no change in models">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/yukuz_v2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/yukuz_v2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Utilites/Utility.py" beforeDir="false" afterPath="$PROJECT_DIR$/Utilites/Utility.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/allauth/account/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/allauth/account/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/django/contrib/auth/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/lib/python3.7/site-packages/django/contrib/auth/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_firebase/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_firebase/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_firebase/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_firebase/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_firebase/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_firebase/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_firebase/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_main/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_main/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_main/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_main/migrations/0002_auto_20190304_2117.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_main/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_main/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_oauth/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_oauth/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_oauth/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_oauth/migrations/0002_uuser_is_superuser.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_oauth/migrations/0003_driver_person.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_oauth/migrations/0004_remove_person_phone_number.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_oauth/migrations/0005_auto_20190304_2117.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_oauth/migrations/0006_uuser_is_active.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_oauth/migrations/0007_remove_uuser_is_active.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_oauth/migrations/0008_auto_20190307_2036.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_oauth/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_oauth/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prereqs.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reqs.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/licenses/Screenshot_2019-03-06_at_08.23.49.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yukuz_main/Middleware.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_main/Middleware.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yukuz_main/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_main/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yukuz_oauth/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_oauth/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yukuz_oauth/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_oauth/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yukuz_oauth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_oauth/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yukuz_v2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/yukuz_v2/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yukuz_oauth/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+            <state relative-caret-position="294">
+              <caret line="119" selection-start-line="119" selection-end-line="119" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -95,31 +67,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yukuz_firebase/views.py">
+        <entry file="file://$PROJECT_DIR$/yukuz_oauth/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yukuz_firebase/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yukuz_oauth/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="271">
+              <caret line="81" column="70" selection-start-line="81" selection-start-column="70" selection-end-line="81" selection-end-column="70" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -128,33 +79,69 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/yukuz_main/urls.py">
+        <entry file="file://$PROJECT_DIR$/yukuz_oauth/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+            <state relative-caret-position="150">
+              <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yukuz_main/serializers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yukuz_oauth/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/prereqs.txt">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+            <state relative-caret-position="420">
+              <caret line="28" column="12" lean-forward="true" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Utilites/Utility.py">
+        <entry file="file://$PROJECT_DIR$/yukuz_firebase/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+            <state relative-caret-position="460">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
-                <element signature="e#0#33#0" expanded="true" />
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yukuz_main/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -163,7 +150,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yukuz_oauth/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="181">
               <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
             </state>
           </provider>
@@ -172,17 +159,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yukuz_main/Middleware.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/django/utils/deprecation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1335">
-              <caret line="90" selection-start-line="90" selection-end-line="90" />
+            <state relative-caret-position="286">
+              <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -198,14 +179,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>DriverView</find>
-      <find>GroupAdmin</find>
-      <find>timezo</find>
-      <find>add_fieldsets</find>
-      <find>update</find>
-      <find>username</find>
-      <find>get_user</find>
-      <find>AUTH_USER_MODEL</find>
       <find>get_user_mode</find>
       <find>get</find>
       <find>_auth</find>
@@ -228,12 +201,25 @@
       <find>def get_</find>
       <find>status</find>
       <find>register</find>
+      <find>YResponse</find>
+      <find>password</find>
+      <find>driver</find>
+      <find>user_i</find>
+      <find>malform</find>
+      <find>is</find>
+      <find>user</find>
+      <find>create a person</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/yukuz_oauth</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Muhammadjon &lt;tohirov.muhammadjon@mail.ru&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -248,7 +234,6 @@
         <option value="$PROJECT_DIR$/yukuz_firebase/urls.py" />
         <option value="$PROJECT_DIR$/yukuz_main/urls.py" />
         <option value="$PROJECT_DIR$/yukuz_v2/urls.py" />
-        <option value="$PROJECT_DIR$/yukuz_main/serializers.py" />
         <option value="$PROJECT_DIR$/Utilites/YResponse.py" />
         <option value="$PROJECT_DIR$/yukuz_oauth/__init__.py" />
         <option value="$PROJECT_DIR$/yukuz_main/__init__.py" />
@@ -266,17 +251,19 @@
         <option value="$PROJECT_DIR$/yukuz_main/models.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/yukuz_firebase/serializers.py" />
-        <option value="$PROJECT_DIR$/yukuz_firebase/views.py" />
         <option value="$PROJECT_DIR$/yukuz_firebase/models.py" />
         <option value="$PROJECT_DIR$/yukuz_oauth/models.py" />
         <option value="$PROJECT_DIR$/yukuz_oauth/forms.py" />
-        <option value="$PROJECT_DIR$/yukuz_oauth/serializers.py" />
-        <option value="$PROJECT_DIR$/yukuz_oauth/urls.py" />
         <option value="$PROJECT_DIR$/yukuz_v2/settings.py" />
-        <option value="$PROJECT_DIR$/yukuz_main/views.py" />
         <option value="$PROJECT_DIR$/Utilites/Utility.py" />
+        <option value="$PROJECT_DIR$/yukuz_main/views.py" />
+        <option value="$PROJECT_DIR$/yukuz_firebase/views.py" />
+        <option value="$PROJECT_DIR$/yukuz_main/serializers.py" />
         <option value="$PROJECT_DIR$/yukuz_main/Middleware.py" />
         <option value="$PROJECT_DIR$/yukuz_oauth/views.py" />
+        <option value="$PROJECT_DIR$/yukuz_oauth/serializers.py" />
+        <option value="$PROJECT_DIR$/yukuz_oauth/urls.py" />
+        <option value="$PROJECT_DIR$/prereqs.txt" />
       </list>
     </option>
   </component>
@@ -405,12 +392,12 @@
       <workItem from="1559843794591" duration="7752000" />
       <workItem from="1559938110107" duration="4410000" />
       <workItem from="1560100675445" duration="1329000" />
-      <workItem from="1561907338682" duration="268000" />
+      <workItem from="1561907338682" duration="11895000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83233000" />
+    <option name="totallyTimeSpent" value="94860000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -425,24 +412,24 @@
     <frame x="0" y="23" width="1680" height="1027" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.2899878" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2899878" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="0" weight="0.32941177" />
-      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.30695188" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.501221" side_tool="true" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32941177" />
-      <window_info anchor="bottom" id="Database Console" order="4" weight="0.32941177" />
-      <window_info anchor="bottom" id="Python Console" order="5" weight="0.32941177" />
-      <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="7" />
-      <window_info anchor="bottom" id="Find" order="8" weight="0.32941177" />
-      <window_info anchor="bottom" id="Run" order="9" sideWeight="0.4993895" weight="0.32941177" />
-      <window_info anchor="bottom" id="Debug" order="10" sideWeight="0.498779" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="13" weight="0.32941177" />
-      <window_info anchor="right" id="Database" order="0" visible="true" weight="0.1965812" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.19358289" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993895" weight="0.32941177" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.498779" weight="0.36363637" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.501221" side_tool="true" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="5" weight="0.32941177" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32941177" />
+      <window_info anchor="bottom" id="Database Console" order="7" weight="0.32941177" />
+      <window_info anchor="bottom" id="Python Console" order="8" weight="0.32941177" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="10" />
+      <window_info anchor="bottom" id="Find" order="11" weight="0.32941177" />
+      <window_info anchor="bottom" id="Cvs" order="12" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="13" weight="0.4" />
+      <window_info anchor="right" id="Database" order="0" weight="0.1965812" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="SciView" order="2" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
@@ -469,27 +456,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/django/core/handlers/exception.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/django/db/models/query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="474" column="8" selection-start-line="474" selection-start-column="8" selection-end-line="474" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/rest_framework/authtoken/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" column="30" lean-forward="true" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/rest_framework/authtoken/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="406">
@@ -568,16 +534,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_main/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="53" lean-forward="true" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/django/urls/conf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -612,16 +568,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_oauth/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/rest_framework/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
@@ -652,16 +598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_oauth/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-950">
-          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -733,108 +669,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_main/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2940">
-          <caret line="217" column="37" selection-start-line="217" selection-start-column="37" selection-end-line="217" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_v2/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="59" column="43" selection-start-line="59" selection-start-column="43" selection-end-line="59" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yukuz_v2/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="28" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_oauth/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_firebase/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_firebase/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_oauth/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Utilites/Utility.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_oauth/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yukuz_main/Middleware.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -845,10 +683,155 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/python_stubs/1220516982/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="2839" column="8" selection-start-line="2839" selection-start-column="8" selection-end-line="2839" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_firebase/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_v2/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="59" column="21" lean-forward="true" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utilites/Utility.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="62" selection-start-line="10" selection-start-column="62" selection-end-line="10" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_main/tests.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-645">
+          <caret line="22" lean-forward="true" selection-start-line="21" selection-end-line="22" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_main/Middleware.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_oauth/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="81" column="70" selection-start-line="81" selection-start-column="70" selection-end-line="81" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_oauth/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_main/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="15" column="53" selection-start-line="15" selection-start-column="53" selection-end-line="15" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_firebase/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_main/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_oauth/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_oauth/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/prereqs.txt">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yukuz_oauth/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
+          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="12" lean-forward="true" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
         </state>
       </provider>
     </entry>

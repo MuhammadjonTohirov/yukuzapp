@@ -3,20 +3,27 @@ import ast
 
 
 def process_exception(get_response):
-    def middelware(request):
+    def middleware(request):
+        print(request.path)
         response = get_response(request)
         try:
 
             body = None
             error_message = None
-            if response.status_code is 200:
-                body = ast.literal_eval(response.content.decode('UTF-8'))
+            if 200 <= response.status_code <= 299:
+                body = response.data
+
             else:
-                d = dict(ast.literal_eval(response.content.decode('UTF-8')))
+                d = response.data
                 for i in d.keys():
                     error_message = {
                         "message": (d.get(i)[0])
                     }
+
+            if response.status_code == 401:
+                error_message = {
+                    "message": "Not authenticated user"
+                }
 
             custom_container = {
                 "status": response.status_code,
@@ -24,12 +31,11 @@ def process_exception(get_response):
                 "error": error_message
             }
 
-            print(response.content.decode('UTF-8'))
-
-            response.content = str(json.dumps(custom_container)).encode('UTF-8')
+            response.content = str(json.dumps(custom_container))
 
             return response
-        except:
+        except Exception as error:
+            print(error)
             return response
 
-    return middelware
+    return middleware

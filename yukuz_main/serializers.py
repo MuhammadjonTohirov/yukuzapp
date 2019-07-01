@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 # from yukuz_firebase.models import MobDevice
-from yukuz_main.models import VehicleType, Car, PostOrder, PickedOrder
+from yukuz_main.models import VehicleType, Car, PostOrder, PickedOrder, Driver
 
 
 class VehicleTypeSerializers(serializers.ModelSerializer):
@@ -24,7 +24,6 @@ class PostOrderSerializers(serializers.ModelSerializer):
                   'order_time', 'deadline', 'currency_type', 'estimated_price',
                   'type_of_vehicle', 'is_cancelled')
         # exclude = []
-
 
 class PostOrderSerializersForDriver(serializers.ModelSerializer):
     class Meta:

@@ -1,0 +1,4 @@
+# exclude venv and venv_new
+/venv/
+/venv_new/
+

@@ -105,7 +105,6 @@ class Login(APIView):
         )
 
     def post(self, request, *args, **kwargs):
-
         serializer = self.serializer_class(data=request.data,
                                            context={'request': request})
         serializer.is_valid(raise_exception=True)
@@ -140,17 +139,10 @@ class PersonView(ListAPIView, generics.ListCreateAPIView, generics.UpdateAPIView
         user = request.user
         serializer_class = PersonSerializers(data=request.data, user=user)
 
-        number_of_person_by_ssn = Person.objects.filter(ssn=request.data['ssn']).count()
-
-        if number_of_person_by_ssn == 0:
-            if serializer_class.is_valid(raise_exception=True):
-                serializer_class.save()
-                return YResponse.created_response(serializer_class.data)
-            return YResponse.failure_response(serializer_class.errors)
-        else:
-            return YResponse.failure_response({
-                'message': 'The person with ssn is exists'
-            })
+        if serializer_class.is_valid(raise_exception=True):
+            serializer_class.save()
+            return YResponse.created_response(serializer_class.data)
+        return YResponse.failure_response(serializer_class.errors)
 
     def patch(self, request, *args, **kwargs):
 
@@ -256,11 +248,30 @@ class DriverView(generics.CreateAPIView, generics.ListAPIView, generics.UpdateAP
 @permission_classes((IsAuthenticated,))
 def get_id(request):
     user = UUser.objects.get(pk=request.user.id)
-    person = Person.objects.get(user=user)
-    dictionary = {"first_name": str(user.first_name),
-                  "last_name": str(user.last_name),
-                  "ssn": str(person.ssn),
-                  "phone": str(person.username),
-                  "image": str(person.image)}
+    dictionary = {"phone": str(user.username)}
 
-    return HttpResponse(json.dumps(dictionary))
+    try:
+        person = Person.objects.get(user=user)
+        dictionary["first_name"] = str(person.first_name)
+        dictionary["last_name"] = str(person.last_name)
+        dictionary["ssn"] = str(person.ssn)
+        dictionary["image"] = str(person.image.url)
+    except:
+        dictionary["first_name"] = None
+        dictionary["last_name"] = None
+        dictionary["ssn"] = None
+        dictionary["image"] = None
+
+        print("no such user")
+
+    try:
+
+        driver = Driver.objects.get(driver__user=user)
+        serializer = DriverSerializers(driver)
+        dictionary["is_driver"] = True
+        dictionary["driver"] = serializer.data
+    except:
+        dictionary["is_driver"] = False
+        dictionary["driver"] = None
+
+    return YResponse.success_response(dictionary)
